@@ -13,31 +13,31 @@ interface Destination {
 const destinations: Destination[] = [
   {
     id: 1,
-    name: "Ancient Temples of Angkor",
-    location: "Cambodia",
-    image: "https://images.unsplash.com/photo-1600184986426-b4d05602c237?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
-    description: "Explore the magnificent temples of the ancient Khmer Empire"
+    name: "Tiger's Nest Monastery",
+    location: "Paro, Bhutan",
+    image: "https://images.unsplash.com/photo-1540556805098-1a6387ab1ebc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
+    description: "Explore this iconic monastery perched on a cliff, offering breathtaking views and spiritual significance"
   },
   {
     id: 2,
-    name: "Golden Palace",
-    location: "Thailand",
-    image: "https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
-    description: "Discover the ornate architecture and rich history of royal palaces"
+    name: "Punakha Dzong",
+    location: "Punakha, Bhutan",
+    image: "https://images.unsplash.com/photo-1625638332402-57211965d3c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
+    description: "Discover the majestic fortress at the confluence of two rivers, showcasing Bhutan's architectural splendor"
   },
   {
     id: 3,
-    name: "Sacred Pagodas",
-    location: "Myanmar",
-    image: "https://images.unsplash.com/photo-1540122995631-7c74c451b23c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
-    description: "Visit ancient spiritual sites with stunning golden spires"
+    name: "Dochula Pass",
+    location: "Thimphu, Bhutan",
+    image: "https://images.unsplash.com/photo-1609939006851-e4c4328598a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
+    description: "Visit this mountain pass with panoramic Himalayan views and 108 memorial chortens"
   },
   {
     id: 4,
-    name: "Himalayan Monasteries",
-    location: "Nepal",
-    image: "https://images.unsplash.com/photo-1544085311-11a028465b03?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
-    description: "Journey to remote mountain temples with breathtaking views"
+    name: "Phobjikha Valley",
+    location: "Wangdue, Bhutan",
+    image: "https://images.unsplash.com/photo-1623677435560-ee1a346141b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
+    description: "Journey to this glacial valley, home to endangered black-necked cranes and pristine natural beauty"
   }
 ];
 
@@ -87,9 +87,9 @@ const Destinations = () => {
       
       <div className="container-custom">
         <div ref={sectionRef} className="text-center mb-16 opacity-0">
-          <h2 className="h2 mb-4">Explore <span className="text-majestic-gold">Iconic</span> Destinations</h2>
+          <h2 className="h2 mb-4">Explore <span className="text-majestic-gold">Bhutan's</span> Treasures</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Discover ancient temples, cultural landmarks, and spiritual sites across Asia's most breathtaking locations
+            Discover ancient monasteries, majestic fortresses, and breathtaking landscapes across the Kingdom of Bhutan
           </p>
         </div>
         

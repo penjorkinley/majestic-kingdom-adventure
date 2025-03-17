@@ -40,7 +40,7 @@ const Hero = () => {
       ref={heroRef}
       className="h-screen relative bg-cover bg-center flex items-center justify-center overflow-hidden"
       style={{
-        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://images.unsplash.com/photo-1580653786300-ccf372bb09c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80)'
+        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://images.unsplash.com/photo-1540556805098-1a6387ab1ebc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80)'
       }}
       id="home"
     >
@@ -49,10 +49,10 @@ const Hero = () => {
       <div className="hero-content container mx-auto px-4 text-center text-white z-10 transition-all duration-300">
         <div className="animate-slide-in-top">
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-shadow-lg">
-            Discover <span className="text-majestic-gold">Majestic</span> Adventures
+            Discover <span className="text-majestic-gold">Bhutan's</span> Majestic Wonders
           </h1>
           <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-shadow">
-            Explore ancient temples, vibrant cultures, and breathtaking landscapes with our premium guided tours
+            Your Gateway to Bhutan's Hidden Wonders - Experience the rich culture, spiritual heritage, and breathtaking landscapes
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -63,10 +63,10 @@ const Hero = () => {
               Explore Tours
             </a>
             <a 
-              href="#book" 
+              href="#about" 
               className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/40 px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-lg"
             >
-              Book Now
+              About Us
             </a>
           </div>
         </div>

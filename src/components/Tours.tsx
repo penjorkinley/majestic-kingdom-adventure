@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Calendar, Clock, Users, Star, ArrowRight } from 'lucide-react';
 
@@ -16,45 +17,45 @@ interface Tour {
 const tours: Tour[] = [
   {
     id: 1,
-    title: "Temples of Ancient Cambodia",
-    image: "https://images.unsplash.com/photo-1602149546099-3e9d7a9a2c93?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
+    title: "Cultural Heritage Tour",
+    image: "https://images.unsplash.com/photo-1609939339023-8dfa700dad9b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
     rating: 4.9,
-    duration: "7 days",
-    groupSize: "Max 12",
-    price: 1899,
+    duration: "8 days",
+    groupSize: "Max 10",
+    price: 2199,
     featured: true,
-    description: "Explore the magnificent temples of Angkor and immerse yourself in Cambodian culture with expert local guides."
+    description: "Explore Bhutan's rich cultural heritage with visits to ancient monasteries, majestic dzongs, and traditional villages. Experience authentic Bhutanese customs and traditions."
   },
   {
     id: 2,
-    title: "Golden Palaces of Thailand",
-    image: "https://images.unsplash.com/photo-1563492065599-3520f775eeed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
+    title: "Himalayan Trek Adventure",
+    image: "https://images.unsplash.com/photo-1544551763-92ab472cad5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
     rating: 4.8,
-    duration: "10 days",
-    groupSize: "Max 10",
-    price: 2199,
-    description: "Discover Bangkok's grand palaces, ancient temples, and experience authentic Thai hospitality."
+    duration: "12 days",
+    groupSize: "Max 8",
+    price: 2899,
+    description: "Trek through breathtaking Himalayan landscapes, remote mountain passes, and pristine valleys. Visit high-altitude monasteries and interact with local communities."
   },
   {
     id: 3,
-    title: "Spiritual Journey to Myanmar",
-    image: "https://images.unsplash.com/photo-1576201836106-db1758fb1e24?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
+    title: "Bhutan Festival Journey",
+    image: "https://images.unsplash.com/photo-1605649429005-6154fade0a8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
     rating: 4.7,
-    duration: "12 days",
-    groupSize: "Max 8",
+    duration: "10 days",
+    groupSize: "Max 12",
     price: 2499,
-    description: "Visit sacred pagodas, meet local monks, and experience the tranquility of Myanmar's spiritual sites."
+    description: "Witness Bhutan's vibrant festivals (Tshechus) featuring colorful mask dances, traditional music, and religious ceremonies that showcase the country's living traditions."
   },
   {
     id: 4,
-    title: "Himalayan Monastery Trek",
-    image: "https://images.unsplash.com/photo-1605649461784-7bd82771a3af?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
+    title: "Spiritual Retreat",
+    image: "https://images.unsplash.com/photo-1593709942239-e423f46750c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
     rating: 4.9,
-    duration: "14 days",
+    duration: "7 days",
     groupSize: "Max 6",
-    price: 2899,
+    price: 1899,
     featured: true,
-    description: "Trek through breathtaking mountain trails to remote monasteries in the Himalayan foothills."
+    description: "Immerse yourself in Bhutan's spiritual traditions with meditation sessions, monastery visits, and interactions with Buddhist monks. Experience the unique philosophy of Gross National Happiness."
   }
 ];
 
@@ -65,9 +66,9 @@ const Tours = () => {
     <section id="tours" className="section-padding bg-white dark:bg-background relative">
       <div className="container-custom">
         <div className="text-center mb-16 animate-fade-in">
-          <h2 className="h2 mb-4">Our Premium <span className="text-majestic-gold">Tour</span> Packages</h2>
+          <h2 className="h2 mb-4">Our Premium <span className="text-majestic-gold">Bhutan</span> Tours</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Expertly crafted journeys combining cultural immersion, historical exploration, and unforgettable experiences
+            Expertly crafted journeys combining cultural immersion, spiritual experiences, and unforgettable Himalayan adventures
           </p>
         </div>
         

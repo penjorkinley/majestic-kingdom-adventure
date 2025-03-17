@@ -15,7 +15,7 @@ const Footer = () => {
               className="h-16 mb-4 object-contain"
             />
             <p className="text-gray-400 mb-6">
-              Crafting unforgettable cultural journeys across Asia's most magnificent destinations.
+              Your Gateway to Bhutan's Hidden Wonders - Crafting unforgettable cultural journeys across the Land of the Thunder Dragon.
             </p>
             <div className="flex space-x-4">
               {['facebook', 'twitter', 'instagram', 'youtube'].map(social => (
@@ -36,7 +36,7 @@ const Footer = () => {
               Destinations
             </h4>
             <ul className="space-y-3">
-              {['Cambodia', 'Thailand', 'Myanmar', 'Nepal', 'Laos', 'Vietnam'].map(destination => (
+              {['Thimphu', 'Paro', 'Punakha', 'Bumthang', 'Wangdue', 'Haa Valley'].map(destination => (
                 <li key={destination}>
                   <a href="#" className="text-gray-400 hover:text-majestic-gold transition-colors">
                     {destination}
@@ -73,7 +73,7 @@ const Footer = () => {
               Newsletter
             </h4>
             <p className="text-gray-400 mb-4">
-              Subscribe to receive updates on new tours and special offers.
+              Subscribe to receive updates on new Bhutan tours and special offers.
             </p>
             <form className="mb-4">
               <div className="flex">
