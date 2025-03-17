@@ -121,26 +121,14 @@
   }
 }
 
-/* Custom scrollbar */
+/* Remove scrollbar styles */
 ::-webkit-scrollbar {
-  width: 8px;
+  display: none; /* Chrome, Safari, Opera */
 }
 
-::-webkit-scrollbar-track {
-  background: theme('colors.muted.DEFAULT');
-}
-
-::-webkit-scrollbar-thumb {
-  background: theme('colors.majestic.orange');
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: theme('colors.majestic.amber');
-}
-
-/* Smooth scrolling */
 html {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   scroll-behavior: smooth;
 }
 
