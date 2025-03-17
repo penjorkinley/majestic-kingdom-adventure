@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className="container-custom flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center">
-          <img src="/lovable-uploads/6be2a70a-e41c-483f-9fe8-e34d2ef3c881.png" alt="Majestic Kingdom Adventure" className="h-14 md:h-16 object-contain" />
+          <img src="/lovable-uploads/6be2a70a-e41c-483f-9fe8-e34d2ef3c881.png" alt="Majestic Kingdom Adventure" className="h-14 md:h-20 object-contain" />
         </a>
 
         {/* Desktop Navigation */}
