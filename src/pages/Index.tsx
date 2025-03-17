@@ -56,23 +56,6 @@ const Index = () => {
         <Contact />
       </main>
       <Footer />
-      
-      <style jsx>{`
-        @keyframes loader {
-          0% {
-            width: 0%;
-            margin-left: 0%;
-          }
-          50% {
-            width: 100%;
-            margin-left: 0%;
-          }
-          100% {
-            width: 0%;
-            margin-left: 100%;
-          }
-        }
-      `}</style>
     </div>
   );
 };

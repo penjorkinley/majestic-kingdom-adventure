@@ -163,3 +163,19 @@ html {
 .mask-gradient-b {
   mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 }
+
+/* Loader animation keyframes */
+@keyframes loader {
+  0% {
+    width: 0%;
+    margin-left: 0%;
+  }
+  50% {
+    width: 100%;
+    margin-left: 0%;
+  }
+  100% {
+    width: 0%;
+    margin-left: 100%;
+  }
+}
