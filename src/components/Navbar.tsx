@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -22,7 +21,7 @@ const Navbar = () => {
       <div className="container-custom flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center">
-          <img src="/lovable-uploads/6be2a70a-e41c-483f-9fe8-e34d2ef3c881.png" alt="Majestic Kingdom Adventure" className="h-14 md:h-28 object-contain" />
+          <img src="/lovable-uploads/6be2a70a-e41c-483f-9fe8-e34d2ef3c881.png" alt="Majestic Kingdom Adventure" className="h-14 md:h-24 object-contain" />
         </a>
 
         {/* Desktop Navigation */}
@@ -45,11 +44,7 @@ const Navbar = () => {
       <div className={`md:hidden fixed inset-0 bg-background z-40 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex flex-col h-full p-8 pt-24">
           {/* Close button */}
-          <button 
-            className="absolute top-6 right-6 p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors"
-            onClick={closeMenu}
-            aria-label="Close Menu"
-          >
+          <button className="absolute top-6 right-6 p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors" onClick={closeMenu} aria-label="Close Menu">
             <X size={24} />
           </button>
           
