@@ -40,7 +40,7 @@ const Hero = () => {
       ref={heroRef}
       className="h-screen relative bg-cover bg-center flex items-center justify-center overflow-hidden"
       style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1518539149859-4513168156ab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3)'
+        backgroundImage: 'url(/lovable-uploads/74ba5534-67a6-4486-9933-69755854894b.png)'
       }}
       id="home"
     >
@@ -57,7 +57,7 @@ const Hero = () => {
           
           <div className="flex justify-center">
             <a 
-              href="#tours" 
+              href="#destinations" 
               className="bg-majestic-gold hover:bg-majestic-amber text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-lg hover:scale-105"
             >
               Explore Tours

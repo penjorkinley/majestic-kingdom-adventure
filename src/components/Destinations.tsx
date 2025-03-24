@@ -1,45 +1,8 @@
 
 import React, { useEffect, useRef } from 'react';
 import { MapPin } from 'lucide-react';
-
-interface Destination {
-  id: number;
-  name: string;
-  location: string;
-  image: string;
-  description: string;
-}
-
-const destinations: Destination[] = [
-  {
-    id: 1,
-    name: "Tiger's Nest Monastery",
-    location: "Paro, Bhutan",
-    image: "https://images.unsplash.com/photo-1540556805098-1a6387ab1ebc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
-    description: "Explore this iconic monastery perched on a cliff, offering breathtaking views and spiritual significance"
-  },
-  {
-    id: 2,
-    name: "Punakha Dzong",
-    location: "Punakha, Bhutan",
-    image: "https://images.unsplash.com/photo-1625638332402-57211965d3c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
-    description: "Discover the majestic fortress at the confluence of two rivers, showcasing Bhutan's architectural splendor"
-  },
-  {
-    id: 3,
-    name: "Dochula Pass",
-    location: "Thimphu, Bhutan",
-    image: "https://images.unsplash.com/photo-1609939006851-e4c4328598a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
-    description: "Visit this mountain pass with panoramic Himalayan views and 108 memorial chortens"
-  },
-  {
-    id: 4,
-    name: "Phobjikha Valley",
-    location: "Wangdue, Bhutan",
-    image: "https://images.unsplash.com/photo-1623677435560-ee1a346141b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
-    description: "Journey to this glacial valley, home to endangered black-necked cranes and pristine natural beauty"
-  }
-];
+import { Link } from 'react-router-dom';
+import { destinationDetails } from '@/data/destinations';
 
 const Destinations = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -94,7 +57,7 @@ const Destinations = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {destinations.map((destination, index) => (
+          {destinationDetails.map((destination, index) => (
             <div
               key={destination.id}
               ref={el => cardsRef.current[index] = el}
@@ -119,12 +82,12 @@ const Destinations = () => {
               
               <div className="p-6">
                 <p className="text-muted-foreground mb-4">{destination.description}</p>
-                <a 
-                  href="#" 
+                <Link 
+                  to={`/destination/${destination.id}`}
                   className="inline-flex items-center text-majestic-orange font-medium hover:text-majestic-amber transition-colors underline-animation"
                 >
                   Learn more
-                </a>
+                </Link>
               </div>
             </div>
           ))}

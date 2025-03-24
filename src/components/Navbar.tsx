@@ -18,7 +18,7 @@ const Navbar = () => {
       }
 
       // Update active section based on scroll position
-      const sections = ['home', 'destinations', 'tours', 'about', 'contact'];
+      const sections = ['home', 'destinations', 'about', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -43,20 +43,21 @@ const Navbar = () => {
   return <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-md py-1' : 'bg-transparent py-2'}`}>
       <div className="container-custom flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img src="/lovable-uploads/6be2a70a-e41c-483f-9fe8-e34d2ef3c881.png" alt="Majestic Kingdom Adventure" className="h-12 md:h-28 object-contain" />
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 items-center">
-          {['Home', 'Destinations', 'Tours', 'About', 'Contact'].map(item => {
+          {['Home', 'Destinations', 'About'].map(item => {
             const sectionId = item.toLowerCase();
             const isActive = activeSection === sectionId;
+            const linkTo = item === 'Home' ? '/' : `/${sectionId}`;
             
             return (
-              <a 
+              <Link 
                 key={item} 
-                href={`#${sectionId}`} 
+                to={linkTo}
                 className={`font-medium text-foreground/90 hover:text-majestic-gold transition-colors ${
                   isActive 
                     ? 'text-majestic-gold font-semibold after:scale-x-100 after:origin-bottom-left' 
@@ -64,12 +65,12 @@ const Navbar = () => {
                 }`}
               >
                 {item}
-              </a>
+              </Link>
             );
           })}
-          <a href="#contact" className="bg-majestic-gold hover:bg-majestic-amber text-white px-6 py-2 rounded-full transition-all hover:shadow-lg hover:scale-105 transform duration-300">
+          <Link to="/contact" className="bg-majestic-gold hover:bg-majestic-amber text-white px-6 py-2 rounded-full transition-all hover:shadow-lg hover:scale-105 transform duration-300">
             Contact
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -87,30 +88,24 @@ const Navbar = () => {
           </button>
           
           <div className="flex flex-col space-y-6">
-            {['Home', 'Destinations', 'Tours', 'About', 'Contact'].map(item => {
+            {['Home', 'Destinations', 'About', 'Contact'].map(item => {
               const sectionId = item.toLowerCase();
               const isActive = activeSection === sectionId;
+              const linkTo = item === 'Home' ? '/' : `/${sectionId}`;
               
               return (
-                <a 
+                <Link 
                   key={item} 
-                  href={`#${sectionId}`} 
+                  to={linkTo}
                   className={`text-xl font-medium py-2 border-b border-muted hover:text-majestic-gold transition-colors ${
                     isActive ? 'text-majestic-gold font-semibold' : ''
                   }`} 
                   onClick={closeMenu}
                 >
                   {item}
-                </a>
+                </Link>
               );
             })}
-            <a 
-              href="#contact" 
-              className="bg-majestic-gold hover:bg-majestic-amber text-white px-6 py-3 rounded-full transition-all hover:shadow-lg text-center mt-6" 
-              onClick={closeMenu}
-            >
-              Contact
-            </a>
           </div>
         </div>
       </div>

@@ -1,5 +1,7 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { MapPin, Phone, Mail, Facebook, Instagram, Twitter, Linkedin, Youtube } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -7,7 +9,8 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8 relative">
       <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {/* Logo and About */}
           <div>
             <img 
               src="/lovable-uploads/6be2a70a-e41c-483f-9fe8-e34d2ef3c881.png" 
@@ -17,94 +20,102 @@ const Footer = () => {
             <p className="text-gray-400 mb-6">
               Your Gateway to Bhutan's Hidden Wonders - Crafting unforgettable cultural journeys across the Land of the Thunder Dragon.
             </p>
-            <div className="flex space-x-4">
-              {['facebook', 'twitter', 'instagram', 'youtube'].map(social => (
-                <a 
-                  key={social}
-                  href="#" 
-                  className="bg-gray-800 hover:bg-majestic-gold/80 w-10 h-10 rounded-full flex items-center justify-center transition-colors"
-                  aria-label={`Follow us on ${social}`}
-                >
-                  <i className={`fab fa-${social}`}></i>
+          </div>
+          
+          {/* Contact Information */}
+          <div>
+            <h4 className="text-xl font-bold mb-6 relative inline-block after:content-[''] after:absolute after:w-1/2 after:h-0.5 after:bg-majestic-gold after:bottom-0 after:left-0">
+              Contact Us
+            </h4>
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <MapPin className="w-5 h-5 text-majestic-gold mt-1 mr-3 flex-shrink-0" />
+                <span className="text-gray-400">
+                  123 Norzin Lam, Thimphu, Bhutan
+                </span>
+              </li>
+              <li className="flex items-start">
+                <Phone className="w-5 h-5 text-majestic-gold mt-1 mr-3 flex-shrink-0" />
+                <span className="text-gray-400">
+                  +975 2 123 4567
+                </span>
+              </li>
+              <li className="flex items-start">
+                <Mail className="w-5 h-5 text-majestic-gold mt-1 mr-3 flex-shrink-0" />
+                <a href="mailto:info@majestickingdom.bt" className="text-gray-400 hover:text-majestic-gold transition-colors">
+                  info@majestickingdom.bt
                 </a>
-              ))}
+              </li>
+            </ul>
+            
+            <h4 className="text-xl font-bold mt-8 mb-4 relative inline-block after:content-[''] after:absolute after:w-1/2 after:h-0.5 after:bg-majestic-gold after:bottom-0 after:left-0">
+              Follow Us
+            </h4>
+            <div className="flex space-x-4">
+              <a 
+                href="#" 
+                className="bg-gray-800 hover:bg-majestic-gold w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook size={18} />
+              </a>
+              <a 
+                href="#" 
+                className="bg-gray-800 hover:bg-majestic-gold w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram size={18} />
+              </a>
+              <a 
+                href="#" 
+                className="bg-gray-800 hover:bg-majestic-gold w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+                aria-label="Twitter"
+              >
+                <Twitter size={18} />
+              </a>
+              <a 
+                href="#" 
+                className="bg-gray-800 hover:bg-majestic-gold w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={18} />
+              </a>
+              <a 
+                href="#" 
+                className="bg-gray-800 hover:bg-majestic-gold w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+                aria-label="YouTube"
+              >
+                <Youtube size={18} />
+              </a>
             </div>
           </div>
           
-          <div>
-            <h4 className="text-xl font-bold mb-6 relative inline-block after:content-[''] after:absolute after:w-1/2 after:h-0.5 after:bg-majestic-gold after:bottom-0 after:left-0">
-              Destinations
-            </h4>
-            <ul className="space-y-3">
-              {['Thimphu', 'Paro', 'Punakha', 'Bumthang', 'Wangdue', 'Haa Valley'].map(destination => (
-                <li key={destination}>
-                  <a href="#" className="text-gray-400 hover:text-majestic-gold transition-colors">
-                    {destination}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
+          {/* Quick Links */}
           <div>
             <h4 className="text-xl font-bold mb-6 relative inline-block after:content-[''] after:absolute after:w-1/2 after:h-0.5 after:bg-majestic-gold after:bottom-0 after:left-0">
               Quick Links
             </h4>
             <ul className="space-y-3">
               {[
-                { name: 'About Us', link: '#about' },
-                { name: 'Tours', link: '#tours' },
-                { name: 'Testimonials', link: '#' },
-                { name: 'Gallery', link: '#' },
+                { name: 'Home', link: '/' },
+                { name: 'Destinations', link: '/destinations' },
+                { name: 'About Us', link: '/about' },
+                { name: 'Contact', link: '/contact' },
                 { name: 'Terms & Conditions', link: '#' },
                 { name: 'Privacy Policy', link: '#' }
               ].map(item => (
                 <li key={item.name}>
-                  <a href={item.link} className="text-gray-400 hover:text-majestic-gold transition-colors">
+                  <Link to={item.link} className="text-gray-400 hover:text-majestic-gold transition-colors">
                     {item.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
-          
-          <div>
-            <h4 className="text-xl font-bold mb-6 relative inline-block after:content-[''] after:absolute after:w-1/2 after:h-0.5 after:bg-majestic-gold after:bottom-0 after:left-0">
-              Newsletter
-            </h4>
-            <p className="text-gray-400 mb-4">
-              Subscribe to receive updates on new Bhutan tours and special offers.
-            </p>
-            <form className="mb-4">
-              <div className="flex">
-                <input 
-                  type="email" 
-                  placeholder="Your email address" 
-                  className="bg-gray-800 border border-gray-700 text-gray-300 px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-majestic-gold/50 w-full"
-                />
-                <button 
-                  type="submit" 
-                  className="bg-majestic-gold hover:bg-majestic-amber text-white px-4 py-2 rounded-r-lg transition-colors"
-                >
-                  Subscribe
-                </button>
-              </div>
-            </form>
-            <p className="text-gray-500 text-sm">
-              We respect your privacy. Unsubscribe at any time.
-            </p>
-          </div>
         </div>
         
-        <div className="border-t border-gray-800 pt-8 mt-8 text-center text-gray-500 text-sm">
+        <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
           <p>&copy; {currentYear} Majestic Kingdom Adventure. All rights reserved.</p>
-          <div className="mt-2">
-            <a href="#" className="text-gray-400 hover:text-majestic-gold transition-colors mx-2">Terms</a>
-            <span className="text-gray-700">•</span>
-            <a href="#" className="text-gray-400 hover:text-majestic-gold transition-colors mx-2">Privacy</a>
-            <span className="text-gray-700">•</span>
-            <a href="#" className="text-gray-400 hover:text-majestic-gold transition-colors mx-2">Cookies</a>
-          </div>
         </div>
       </div>
       
