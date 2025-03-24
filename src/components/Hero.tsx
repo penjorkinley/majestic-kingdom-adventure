@@ -40,11 +40,11 @@ const Hero = () => {
       ref={heroRef}
       className="h-screen relative bg-cover bg-center flex items-center justify-center overflow-hidden"
       style={{
-        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(https://images.unsplash.com/photo-1540556805098-1a6387ab1ebc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80)'
+        backgroundImage: 'url(https://images.unsplash.com/photo-1518539149859-4513168156ab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3)'
       }}
       id="home"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/30"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-background"></div>
       
       <div className="hero-content container mx-auto px-4 text-center text-white z-10 transition-all duration-300">
         <div className="animate-slide-in-top">
@@ -55,18 +55,12 @@ const Hero = () => {
             Your Gateway to Bhutan's Hidden Wonders - Experience the rich culture, spiritual heritage, and breathtaking landscapes
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <a 
               href="#tours" 
               className="bg-majestic-gold hover:bg-majestic-amber text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-lg hover:scale-105"
             >
               Explore Tours
-            </a>
-            <a 
-              href="#about" 
-              className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/40 px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-lg"
-            >
-              About Us
             </a>
           </div>
         </div>

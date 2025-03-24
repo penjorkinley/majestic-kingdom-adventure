@@ -1,36 +1,74 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+
   useEffect(() => {
     const handleScroll = () => {
+      // Update navbar background based on scroll position
       if (window.scrollY > 10) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
+
+      // Update active section based on scroll position
+      const sections = ['home', 'destinations', 'tours', 'about', 'contact'];
+      const currentSection = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom > 100;
+        }
+        return false;
+      });
+
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
     };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
-  return <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-md py-2' : 'bg-transparent py-4'}`}>
+
+  return <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-md py-1' : 'bg-transparent py-2'}`}>
       <div className="container-custom flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="flex items-center">
-          <img src="/lovable-uploads/6be2a70a-e41c-483f-9fe8-e34d2ef3c881.png" alt="Majestic Kingdom Adventure" className="h-14 md:h-24 object-contain" />
+          <img src="/lovable-uploads/6be2a70a-e41c-483f-9fe8-e34d2ef3c881.png" alt="Majestic Kingdom Adventure" className="h-12 md:h-28 object-contain" />
         </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 items-center">
-          {['Home', 'Destinations', 'Tours', 'About', 'Contact'].map(item => <a key={item} href={`#${item.toLowerCase()}`} className="font-medium underline-animation text-foreground/90 hover:text-majestic-gold transition-colors">
-              {item}
-            </a>)}
-          <a href="#book" className="bg-majestic-gold hover:bg-majestic-amber text-white px-6 py-2 rounded-full transition-all hover:shadow-lg hover:scale-105 transform duration-300">
-            Book Now
+          {['Home', 'Destinations', 'Tours', 'About', 'Contact'].map(item => {
+            const sectionId = item.toLowerCase();
+            const isActive = activeSection === sectionId;
+            
+            return (
+              <a 
+                key={item} 
+                href={`#${sectionId}`} 
+                className={`font-medium text-foreground/90 hover:text-majestic-gold transition-colors ${
+                  isActive 
+                    ? 'text-majestic-gold font-semibold after:scale-x-100 after:origin-bottom-left' 
+                    : 'underline-animation'
+                }`}
+              >
+                {item}
+              </a>
+            );
+          })}
+          <a href="#contact" className="bg-majestic-gold hover:bg-majestic-amber text-white px-6 py-2 rounded-full transition-all hover:shadow-lg hover:scale-105 transform duration-300">
+            Contact
           </a>
         </nav>
 
@@ -49,15 +87,34 @@ const Navbar = () => {
           </button>
           
           <div className="flex flex-col space-y-6">
-            {['Home', 'Destinations', 'Tours', 'About', 'Contact'].map(item => <a key={item} href={`#${item.toLowerCase()}`} className="text-xl font-medium py-2 border-b border-muted hover:text-majestic-gold transition-colors" onClick={closeMenu}>
-                {item}
-              </a>)}
-            <a href="#book" className="bg-majestic-gold hover:bg-majestic-amber text-white px-6 py-3 rounded-full transition-all hover:shadow-lg text-center mt-6" onClick={closeMenu}>
-              Book Now
+            {['Home', 'Destinations', 'Tours', 'About', 'Contact'].map(item => {
+              const sectionId = item.toLowerCase();
+              const isActive = activeSection === sectionId;
+              
+              return (
+                <a 
+                  key={item} 
+                  href={`#${sectionId}`} 
+                  className={`text-xl font-medium py-2 border-b border-muted hover:text-majestic-gold transition-colors ${
+                    isActive ? 'text-majestic-gold font-semibold' : ''
+                  }`} 
+                  onClick={closeMenu}
+                >
+                  {item}
+                </a>
+              );
+            })}
+            <a 
+              href="#contact" 
+              className="bg-majestic-gold hover:bg-majestic-amber text-white px-6 py-3 rounded-full transition-all hover:shadow-lg text-center mt-6" 
+              onClick={closeMenu}
+            >
+              Contact
             </a>
           </div>
         </div>
       </div>
     </header>;
 };
+
 export default Navbar;
