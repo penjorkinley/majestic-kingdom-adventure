@@ -45,7 +45,7 @@ const Hero = () => {
       }}
       id="home"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-white/70"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-white/30"></div>
 
       <div className="hero-content container mx-auto px-4 text-center text-white z-10 transition-all duration-500">
         <div className="animate-slide-in-top">
