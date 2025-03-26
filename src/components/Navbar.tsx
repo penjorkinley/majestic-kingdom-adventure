@@ -53,7 +53,7 @@ const Navbar = () => {
           <img
             src="/lovable-uploads/6be2a70a-e41c-483f-9fe8-e34d2ef3c881.png"
             alt="Majestic Kingdom Adventure"
-            className="h-12 md:h-24 object-contain"
+            className="h-12 md:h-28 object-contain"
           />
         </Link>
 
