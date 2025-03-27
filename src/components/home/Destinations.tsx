@@ -5,7 +5,9 @@ import { destinationDetails } from "@/data/destinations";
 
 const Destinations = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const buttonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observerOptions = {
@@ -20,7 +22,7 @@ const Destinations = () => {
     ) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("animate-fade-in");
+          entry.target.classList.add("animate-fade-in-up");
           entry.target.classList.remove("opacity-0");
           observer.unobserve(entry.target);
         }
@@ -30,8 +32,8 @@ const Destinations = () => {
     const observer = new IntersectionObserver(handleIntersect, observerOptions);
 
     // Observe the section title
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (titleRef.current) {
+      observer.observe(titleRef.current);
     }
 
     // Observe each card with a delay
@@ -39,9 +41,14 @@ const Destinations = () => {
       if (card) {
         setTimeout(() => {
           observer.observe(card);
-        }, index * 100);
+        }, index * 150); // Slightly longer delay for more noticeable staggered effect
       }
     });
+
+    // Observe the button container
+    if (buttonRef.current) {
+      observer.observe(buttonRef.current);
+    }
 
     return () => observer.disconnect();
   }, []);
@@ -54,9 +61,16 @@ const Destinations = () => {
       <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-background to-transparent"></div>
 
       <div className="container-custom">
-        <div ref={sectionRef} className="text-center mb-16 opacity-0">
+        <div
+          ref={titleRef}
+          className="text-center mb-16 opacity-0 transition-all duration-700"
+        >
           <h2 className="h2 mb-4">
-            Explore <span className="text-majestic-gold">Bhutan's</span>{" "}
+            Explore{" "}
+            <span className="text-majestic-gold relative">
+              Bhutan's
+              <span className="absolute bottom-0 left-0 w-full rounded-full"></span>
+            </span>{" "}
             Treasures
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -72,6 +86,7 @@ const Destinations = () => {
               key={destination.id}
               ref={(el) => (cardsRef.current[index] = el)}
               className="group relative h-80 rounded-xl overflow-hidden shadow-lg opacity-0 transform transition-all duration-500 hover:scale-105 hover:z-10 hover:shadow-xl"
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
               {/* Background Image */}
               <img
@@ -112,13 +127,20 @@ const Destinations = () => {
         </div>
 
         {/* View More Button */}
-        <div className="mt-16 text-center">
+        <div
+          ref={buttonRef}
+          className="mt-16 text-center opacity-0 transition-all duration-700"
+          style={{ transitionDelay: "300ms" }}
+        >
           <Link
             to="/destinations"
-            className="inline-flex items-center justify-center bg-majestic-gold hover:bg-majestic-amber text-white px-8 py-3 rounded-full transition-all hover:shadow-lg hover:scale-105"
+            className="inline-flex items-center justify-center bg-majestic-gold hover:bg-majestic-amber text-white px-8 py-3 rounded-full transition-all hover:shadow-lg hover:scale-105 group"
           >
             View More Destinations
-            <ArrowRight size={18} className="ml-2" />
+            <ArrowRight
+              size={18}
+              className="ml-2 transition-transform group-hover:translate-x-1"
+            />
           </Link>
         </div>
       </div>

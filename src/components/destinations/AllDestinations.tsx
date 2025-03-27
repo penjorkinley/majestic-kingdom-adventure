@@ -21,7 +21,7 @@ const AllDestinations = () => {
     ) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("animate-fade-in");
+          entry.target.classList.add("animate-fade-in-up"); // Changed to fade-in-up
           entry.target.classList.remove("opacity-0");
           observer.unobserve(entry.target);
         }
@@ -40,7 +40,7 @@ const AllDestinations = () => {
       if (card) {
         setTimeout(() => {
           observer.observe(card);
-        }, index * 100);
+        }, index * 150); // Increased delay for more noticeable staggered effect
       }
     });
 
@@ -54,9 +54,16 @@ const AllDestinations = () => {
 
   return (
     <section id="destinations-section" className="pt-24 pb-16">
-      <div ref={sectionRef} className="text-center mb-16 opacity-0">
+      <div
+        ref={sectionRef}
+        className="text-center mb-16 opacity-0 transition-all duration-700"
+      >
         <h2 className="h2 mb-4">
-          Discover <span className="text-majestic-gold">Bhutan's</span>{" "}
+          Discover{" "}
+          <span className="text-majestic-gold relative">
+            Bhutan's
+            <span className="absolute bottom-0 left-0 w-full rounded-full"></span>
+          </span>{" "}
           Treasures
         </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -71,6 +78,7 @@ const AllDestinations = () => {
             key={destination.id}
             ref={(el) => (cardsRef.current[index] = el)}
             className="group relative h-80 rounded-xl overflow-hidden shadow-lg opacity-0 transform transition-all duration-500 hover:scale-105 hover:z-10 hover:shadow-xl"
+            style={{ transitionDelay: `${index * 100}ms` }}
           >
             {/* Background Image */}
             <img
@@ -100,9 +108,12 @@ const AllDestinations = () => {
                 </p>
                 <Link
                   to={`/destination/${destination.id}`}
-                  className="inline-flex items-center text-majestic-gold hover:text-white transition-colors"
+                  className="inline-flex items-center text-majestic-gold hover:text-white transition-colors group"
                 >
-                  Learn more →
+                  Learn more
+                  <span className="inline-block ml-1 transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
                 </Link>
               </div>
             </div>

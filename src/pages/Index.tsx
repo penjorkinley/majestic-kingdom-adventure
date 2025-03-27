@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/home/Hero";
-import Destinations from "@/components/Destinations";
+import Destinations from "@/components/home/Destinations";
 import Testimonials from "@/components/home/Testimonials";
 import Contact from "@/components/home/Contact";
 import Footer from "@/components/Footer";

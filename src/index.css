@@ -186,3 +186,18 @@ html {
 .animate-slide-in-top {
   animation: slide-in-top 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(150px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+}

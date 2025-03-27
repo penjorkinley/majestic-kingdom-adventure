@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 const seasons = [
   {
@@ -36,9 +36,54 @@ const seasons = [
 ];
 
 const SeasonsSection = () => {
+  const titleRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.1,
+    };
+
+    const handleIntersect = (
+      entries: IntersectionObserverEntry[],
+      observer: IntersectionObserver
+    ) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-fade-in-up");
+          entry.target.classList.remove("opacity-0");
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+    // Observe the section title
+    if (titleRef.current) {
+      observer.observe(titleRef.current);
+    }
+
+    // Observe each card with a delay
+    cardsRef.current.forEach((card, index) => {
+      if (card) {
+        setTimeout(() => {
+          observer.observe(card);
+        }, index * 150); // Staggered delay
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="mb-24">
-      <div className="text-center mb-12">
+      <div
+        ref={titleRef}
+        className="text-center mb-12 opacity-0 transition-all duration-700"
+      >
         <h2 className="h2 mb-4">
           Bhutan Through the <span className="text-majestic-gold">Seasons</span>
         </h2>
@@ -48,10 +93,12 @@ const SeasonsSection = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        {seasons.map((season) => (
+        {seasons.map((season, index) => (
           <div
             key={season.name}
-            className="group relative h-80 rounded-xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:z-10 hover:shadow-xl"
+            ref={(el) => (cardsRef.current[index] = el)}
+            className="group relative h-80 rounded-xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:z-10 hover:shadow-xl opacity-0"
+            style={{ transitionDelay: `${index * 100}ms` }}
           >
             <img
               src={season.image}
