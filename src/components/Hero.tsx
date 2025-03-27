@@ -143,7 +143,7 @@ const Hero = ({
       {scrollToId && (
         <button
           onClick={scrollToSection}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-10 animate-ready opacity-0"
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-10 animate-ready opacity-1"
           style={{ animationDelay: "2.7s" }}
           aria-label="Scroll down"
         >
