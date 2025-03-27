@@ -43,7 +43,7 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 items-center">
-          {["Home", "Destinations", "About"].map((item) => {
+          {["Home", "Destinations", "About", "Gallery"].map((item) => {
             const linkTo = item === "Home" ? "/" : `/${item.toLowerCase()}`;
 
             return (
