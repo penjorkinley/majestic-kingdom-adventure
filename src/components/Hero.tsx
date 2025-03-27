@@ -7,6 +7,7 @@ const Hero = () => {
   const location = useLocation();
   const [isVisible, setIsVisible] = useState(false);
   const animationTriggered = useRef(false);
+  const ticking = useRef(false);
 
   // Reset and trigger animation on mount and route changes
   useEffect(() => {
@@ -26,27 +27,37 @@ const Hero = () => {
   }, [location.key]);
 
   useEffect(() => {
+    const content = heroRef.current?.querySelector(
+      ".hero-content"
+    ) as HTMLElement;
+
     const handleScroll = () => {
-      if (!heroRef.current) return;
+      if (ticking.current) return;
 
-      const scrollY = window.scrollY;
-      const opacity = 1 - Math.min(1, scrollY / 700);
-      const translateY = scrollY * 0.4;
+      ticking.current = true;
 
-      // Apply parallax effect to the background
-      heroRef.current.style.backgroundPositionY = `${translateY}px`;
+      requestAnimationFrame(() => {
+        if (!heroRef.current) return;
 
-      // Apply fade effect to the content
-      const content = heroRef.current.querySelector(
-        ".hero-content"
-      ) as HTMLElement;
-      if (content) {
-        content.style.opacity = String(opacity);
-        content.style.transform = `translateY(${scrollY * 0.2}px)`;
-      }
+        const scrollY = window.scrollY;
+
+        // Apply a more efficient parallax effect using transform instead of backgroundPosition
+        // Only apply if scroll position is reasonable (performance optimization)
+        if (scrollY < 1000) {
+          heroRef.current.style.transform = `translateY(${scrollY * 0.15}px)`;
+
+          // Fade out content with scroll - but with less frequent updates
+          if (content) {
+            const opacity = 1 - Math.min(1, scrollY / 700);
+            content.style.opacity = String(opacity);
+          }
+        }
+
+        ticking.current = false;
+      });
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -58,17 +69,19 @@ const Hero = () => {
   };
 
   return (
-    <div
-      ref={heroRef}
-      className="h-screen relative bg-cover bg-center flex items-center justify-center overflow-hidden"
-      style={{
-        backgroundImage: "url(/hero-img.jpg)",
-      }}
-      id="home"
-    >
+    <div className="h-screen relative overflow-hidden" id="home">
+      <div
+        ref={heroRef}
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url(/hero-img.jpg)",
+          willChange: "transform",
+        }}
+      ></div>
+
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-white/30"></div>
 
-      <div className="hero-content container mx-auto px-4 text-center text-white z-10 transition-all duration-500">
+      <div className="hero-content container mx-auto px-4 text-center text-white z-10 relative h-full flex flex-col justify-center transition-opacity duration-500">
         <div
           className={
             isVisible ? "animate-slide-in-top" : "opacity-0 translate-y-[-50px]"

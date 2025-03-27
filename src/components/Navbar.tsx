@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,21 +13,6 @@ const Navbar = () => {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
-      }
-
-      // Update active section based on scroll position
-      const sections = ["home", "destinations", "about"];
-      const currentSection = sections.find((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom > 100;
-        }
-        return false;
-      });
-
-      if (currentSection) {
-        setActiveSection(currentSection);
       }
     };
 
@@ -53,25 +37,23 @@ const Navbar = () => {
           <img
             src="/lovable-uploads/6be2a70a-e41c-483f-9fe8-e34d2ef3c881.png"
             alt="Majestic Kingdom Adventure"
-            className="h-12 md:h-28 object-contain"
+            className="h-12 md:h-24 object-contain"
           />
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 items-center">
           {["Home", "Destinations", "About"].map((item) => {
-            const sectionId = item.toLowerCase();
-            const isActive = activeSection === sectionId;
-            const linkTo = item === "Home" ? "/" : `/${sectionId}`;
+            const linkTo = item === "Home" ? "/" : `/${item.toLowerCase()}`;
 
             return (
               <Link
                 key={item}
                 to={linkTo}
-                className={`font-medium text-foreground/90 hover:text-majestic-gold transition-colors ${
-                  isActive
-                    ? "text-majestic-gold font-semibold after:scale-x-100 after:origin-bottom-left"
-                    : "underline-animation"
+                className={`font-medium hover:text-majestic-gold transition-colors underline-animation ${
+                  isScrolled
+                    ? "text-foreground/90 dark:text-white/90"
+                    : "text-white"
                 }`}
               >
                 {item}
@@ -88,7 +70,9 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-foreground p-2 rounded-md hover:bg-muted transition-colors"
+          className={`md:hidden p-2 rounded-md hover:bg-muted transition-colors ${
+            isScrolled ? "text-foreground dark:text-white" : "text-white"
+          }`}
           onClick={toggleMenu}
           aria-label="Toggle Menu"
         >
@@ -114,17 +98,13 @@ const Navbar = () => {
 
           <div className="flex flex-col space-y-6">
             {["Home", "Destinations", "About", "Contact"].map((item) => {
-              const sectionId = item.toLowerCase();
-              const isActive = activeSection === sectionId;
-              const linkTo = item === "Home" ? "/" : `/${sectionId}`;
+              const linkTo = item === "Home" ? "/" : `/${item.toLowerCase()}`;
 
               return (
                 <Link
                   key={item}
                   to={linkTo}
-                  className={`text-xl font-medium py-2 border-b border-muted hover:text-majestic-gold transition-colors ${
-                    isActive ? "text-majestic-gold font-semibold" : ""
-                  }`}
+                  className="text-xl font-medium py-2 border-b border-muted hover:text-majestic-gold transition-colors"
                   onClick={closeMenu}
                 >
                   {item}
