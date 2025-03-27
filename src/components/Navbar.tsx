@@ -28,7 +28,7 @@ const Navbar = () => {
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-md py-1"
-          : "bg-transparent py-2"
+          : "bg-transparent py-3"
       }`}
     >
       <div className="container-custom flex items-center justify-between">
@@ -37,7 +37,7 @@ const Navbar = () => {
           <img
             src="/lovable-uploads/6be2a70a-e41c-483f-9fe8-e34d2ef3c881.png"
             alt="Majestic Kingdom Adventure"
-            className="h-12 md:h-24 object-contain"
+            className="h-20 md:h-24 object-contain"
           />
         </Link>
 

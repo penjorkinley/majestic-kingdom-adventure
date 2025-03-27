@@ -15,7 +15,6 @@ const Contact = () => {
     name: "",
     email: "",
     phone: "",
-    destination: "",
     message: "",
   });
 
@@ -72,7 +71,6 @@ const Contact = () => {
           name: "",
           email: "",
           phone: "",
-          destination: "",
           message: "",
         });
       }, 5000);
@@ -93,13 +91,6 @@ const Contact = () => {
           ref={contactRef}
           className="text-center mb-16 opacity-0 transition-all duration-700"
         >
-          <div className="inline-block relative mb-3">
-            <span className="absolute -left-3 -top-3 w-6 h-6 rounded-full bg-majestic-amber/20 animate-ping"></span>
-            <span
-              className="absolute -right-3 -bottom-3 w-6 h-6 rounded-full bg-majestic-amber/20 animate-ping"
-              style={{ animationDelay: "1s" }}
-            ></span>
-          </div>
           <h2 className="h2 mb-4">
             Get in{" "}
             <span className="text-majestic-gold relative">
@@ -290,36 +281,6 @@ const Contact = () => {
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg border bg-transparent focus:ring-2 focus:ring-majestic-gold/50 focus:border-majestic-gold transition-all outline-none"
                     />
-                  </div>
-
-                  <div className="group">
-                    <label
-                      htmlFor="destination"
-                      className="block text-sm font-medium text-muted-foreground mb-1 transition-all group-focus-within:text-majestic-gold"
-                    >
-                      Preferred Destination
-                    </label>
-                    <select
-                      id="destination"
-                      name="destination"
-                      value={formData.destination}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border bg-transparent focus:ring-2 focus:ring-majestic-gold/50 focus:border-majestic-gold transition-all outline-none appearance-none"
-                      style={{
-                        backgroundImage:
-                          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")",
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "right 1rem center",
-                        backgroundSize: "1rem",
-                      }}
-                    >
-                      <option value="">Select a destination</option>
-                      <option value="Paro">Paro, Bhutan</option>
-                      <option value="Thimphu">Thimphu, Bhutan</option>
-                      <option value="Punakha">Punakha, Bhutan</option>
-                      <option value="Bumthang">Bumthang, Bhutan</option>
-                      <option value="Other">Other</option>
-                    </select>
                   </div>
                 </div>
 
