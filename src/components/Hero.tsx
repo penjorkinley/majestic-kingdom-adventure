@@ -1,121 +1,139 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Hero = () => {
+interface HeroProps {
+  backgroundImage: string;
+  title: React.ReactNode;
+  subtitle: string;
+  buttonText?: string;
+  buttonLink?: string;
+  scrollToId?: string;
+  fullHeight?: boolean;
+}
+
+const Hero = ({
+  backgroundImage,
+  title,
+  subtitle,
+  buttonText,
+  buttonLink,
+  scrollToId,
+  fullHeight = true,
+}: HeroProps) => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const location = useLocation();
-  const [isVisible, setIsVisible] = useState(false);
-  const animationTriggered = useRef(false);
-  const ticking = useRef(false);
 
-  // Reset and trigger animation on mount and route changes
+  // Set up parallax effect for hero image
   useEffect(() => {
-    // Reset animation state initially
-    setIsVisible(false);
-    animationTriggered.current = false;
-
-    // Trigger animation after a brief delay
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-      animationTriggered.current = true;
-    }, 2000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [location.key]);
-
-  useEffect(() => {
-    const content = heroRef.current?.querySelector(
-      ".hero-content"
-    ) as HTMLElement;
-
     const handleScroll = () => {
-      if (ticking.current) return;
-
-      ticking.current = true;
-
-      requestAnimationFrame(() => {
-        if (!heroRef.current) return;
-
+      if (heroRef.current) {
         const scrollY = window.scrollY;
+        heroRef.current.style.transform = `translateY(${scrollY * 0.5}px)`;
 
-        // Apply a more efficient parallax effect using transform instead of backgroundPosition
-        // Only apply if scroll position is reasonable (performance optimization)
-        if (scrollY < 1000) {
-          heroRef.current.style.transform = `translateY(${scrollY * 0.15}px)`;
-
-          // Fade out content with scroll - but with less frequent updates
-          if (content) {
-            const opacity = 1 - Math.min(1, scrollY / 700);
-            content.style.opacity = String(opacity);
-          }
+        // Fade out text based on scroll position
+        const heroContent = document.querySelector(
+          ".hero-content"
+        ) as HTMLElement;
+        if (heroContent) {
+          const opacity = 1 - Math.min(1, scrollY / 500);
+          heroContent.style.opacity = String(opacity);
         }
-
-        ticking.current = false;
-      });
+      }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToDestinations = () => {
-    const destinationsSection = document.getElementById("destinations");
-    if (destinationsSection) {
-      destinationsSection.scrollIntoView({ behavior: "smooth" });
+  // Scroll to a section when clicking the button or down arrow
+  const scrollToSection = () => {
+    if (scrollToId) {
+      const element = document.getElementById(scrollToId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  // Render button based on props
+  const renderButton = () => {
+    if (!buttonText) return null;
+
+    if (buttonLink && buttonLink.startsWith("/")) {
+      // Internal link - use React Router's Link
+      return (
+        <Link
+          to={buttonLink}
+          className="bg-majestic-gold hover:bg-majestic-amber text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 animate-slide-in-top"
+          style={{ animationDelay: "0.6s" }}
+        >
+          {buttonText}
+        </Link>
+      );
+    } else if (buttonLink && buttonLink.startsWith("#")) {
+      // Anchor link - use regular anchor
+      return (
+        <a
+          href={buttonLink}
+          className="bg-majestic-gold hover:bg-majestic-amber text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 animate-slide-in-top"
+          style={{ animationDelay: "0.6s" }}
+        >
+          {buttonText}
+        </a>
+      );
+    } else {
+      // No link or scroll - use button
+      return (
+        <button
+          onClick={scrollToSection}
+          className="bg-majestic-gold hover:bg-majestic-amber text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 animate-slide-in-top"
+          style={{ animationDelay: "0.6s" }}
+        >
+          {buttonText}
+        </button>
+      );
     }
   };
 
   return (
-    <div className="h-screen relative overflow-hidden" id="home">
-      <div
-        ref={heroRef}
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url(/hero-img.jpg)",
-          willChange: "transform",
-        }}
-      ></div>
+    <div
+      className={`relative ${
+        fullHeight ? "h-screen" : "h-[50vh] md:h-[60vh]"
+      } overflow-hidden`}
+    >
+      <div ref={heroRef} className="absolute inset-0 z-0">
+        <img
+          src={backgroundImage}
+          alt="Hero background"
+          className="w-full h-full object-cover"
+          style={{ minHeight: "120%" }}
+        />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent z-0"></div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-white/30"></div>
-
-      <div className="hero-content container mx-auto px-4 text-center text-white z-10 relative h-full flex flex-col justify-center transition-opacity duration-500">
-        <div
-          className={
-            isVisible ? "animate-slide-in-top" : "opacity-0 translate-y-[-50px]"
-          }
+      <div className="hero-content absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4 z-10">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-shadow-lg animate-slide-in-top">
+          {title}
+        </h1>
+        <p
+          className="text-xl md:text-2xl max-w-2xl mx-auto mb-10 text-shadow animate-slide-in-top"
+          style={{ animationDelay: "0.3s" }}
         >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-shadow-lg">
-            Discover <span className="text-majestic-gold">Bhutan's</span>{" "}
-            Majestic Wonders
-          </h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-shadow">
-            Your Gateway to Bhutan's Hidden Wonders - Experience the rich
-            culture, spiritual heritage, and breathtaking landscapes
-          </p>
+          {subtitle}
+        </p>
 
-          <div className="flex justify-center">
-            <a
-              href="#destinations"
-              className="bg-majestic-gold hover:bg-majestic-amber text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-lg hover:scale-105"
-            >
-              Explore Tours
-            </a>
-          </div>
-        </div>
+        {renderButton()}
       </div>
 
-      <button
-        onClick={scrollToDestinations}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-10"
-        aria-label="Scroll down"
-      >
-        <ChevronDown size={36} className="stroke-white" />
-      </button>
-
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-background to-transparent"></div>
+      {scrollToId && (
+        <button
+          onClick={scrollToSection}
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-10"
+          aria-label="Scroll down"
+        >
+          <ChevronDown size={36} className="stroke-white" />
+        </button>
+      )}
     </div>
   );
 };
