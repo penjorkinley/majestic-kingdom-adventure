@@ -51,16 +51,16 @@ const DestinationDetail = () => {
         {/* Tab Navigation in the middle (between hero and content) */}
         <div className="container-custom relative">
           <div className="flex justify-center -mt-8 mb-10">
-            <div className="bg-white dark:bg-card rounded-full shadow-lg inline-flex px-2">
+            <div className="bg-white dark:bg-card rounded-full shadow-lg inline-flex p-1">
               {["overview", "highlights", "essential information"].map(
                 (tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`py-4 px-6 font-medium transition-all capitalize rounded-full 
+                    className={`py-3 px-6 font-medium transition-all capitalize rounded-full 
                     ${
                       activeTab === tab
-                        ? "text-majestic-gold border-b-4 border-majestic-gold"
+                        ? "text-majestic-gold relative ring-4 ring-majestic-gold outline-1 outline-majestic-gold"
                         : "text-muted-foreground hover:text-majestic-gold"
                     }`}
                   >
