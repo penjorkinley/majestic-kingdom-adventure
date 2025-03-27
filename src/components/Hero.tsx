@@ -22,6 +22,7 @@ const Hero = ({
   fullHeight = true,
 }: HeroProps) => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   // Set up parallax effect for hero image
   useEffect(() => {
@@ -45,6 +46,23 @@ const Hero = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Add delayed animation to hero content to ensure it's visible after preloader
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (contentRef.current) {
+        const elements = contentRef.current.querySelectorAll(".animate-ready");
+        elements.forEach((el, index) => {
+          setTimeout(() => {
+            el.classList.remove("opacity-0");
+            el.classList.add("animate-fade-in-up");
+          }, index * 300);
+        });
+      }
+    }, 1800); // Start animations after preloader (1.5s) + 300ms buffer
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Scroll to a section when clicking the button or down arrow
   const scrollToSection = () => {
     if (scrollToId) {
@@ -64,8 +82,7 @@ const Hero = ({
       return (
         <Link
           to={buttonLink}
-          className="bg-majestic-gold hover:bg-majestic-amber text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 animate-slide-in-top"
-          style={{ animationDelay: "0.6s" }}
+          className="bg-majestic-gold hover:bg-majestic-amber text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 animate-ready opacity-0"
         >
           {buttonText}
         </Link>
@@ -75,8 +92,7 @@ const Hero = ({
       return (
         <a
           href={buttonLink}
-          className="bg-majestic-gold hover:bg-majestic-amber text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 animate-slide-in-top"
-          style={{ animationDelay: "0.6s" }}
+          className="bg-majestic-gold hover:bg-majestic-amber text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 animate-ready opacity-0"
         >
           {buttonText}
         </a>
@@ -86,8 +102,7 @@ const Hero = ({
       return (
         <button
           onClick={scrollToSection}
-          className="bg-majestic-gold hover:bg-majestic-amber text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 animate-slide-in-top"
-          style={{ animationDelay: "0.6s" }}
+          className="bg-majestic-gold hover:bg-majestic-amber text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-lg hover:scale-105 animate-ready opacity-0"
         >
           {buttonText}
         </button>
@@ -111,14 +126,14 @@ const Hero = ({
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent z-0"></div>
 
-      <div className="hero-content absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4 z-10">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-shadow-lg animate-slide-in-top">
+      <div
+        ref={contentRef}
+        className="hero-content absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4 z-10"
+      >
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 text-shadow-lg animate-ready opacity-0">
           {title}
         </h1>
-        <p
-          className="text-xl md:text-2xl max-w-2xl mx-auto mb-10 text-shadow animate-slide-in-top"
-          style={{ animationDelay: "0.3s" }}
-        >
+        <p className="text-xl md:text-2xl max-w-2xl mx-auto mb-10 text-shadow animate-ready opacity-0">
           {subtitle}
         </p>
 
@@ -128,7 +143,8 @@ const Hero = ({
       {scrollToId && (
         <button
           onClick={scrollToSection}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-10"
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-10 animate-ready opacity-0"
+          style={{ animationDelay: "2.7s" }}
           aria-label="Scroll down"
         >
           <ChevronDown size={36} className="stroke-white" />

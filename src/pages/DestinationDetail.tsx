@@ -14,6 +14,25 @@ const DestinationDetail = () => {
     (dest) => dest.id.toString() === id
   );
 
+  // Add a preloader effect
+  useEffect(() => {
+    const body = document.body;
+    body.style.overflow = "hidden";
+
+    const timer = setTimeout(() => {
+      body.style.overflow = "";
+      const preloader = document.getElementById("destination-detail-preloader");
+      if (preloader) {
+        preloader.classList.add("opacity-0");
+        setTimeout(() => {
+          preloader.style.display = "none";
+        }, 500);
+      }
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     if (!destination) {
       navigate("/destinations");
@@ -25,7 +44,24 @@ const DestinationDetail = () => {
   if (!destination) return null;
 
   return (
-    <>
+    <div className="relative">
+      {/* Preloader */}
+      <div
+        id="destination-detail-preloader"
+        className="fixed inset-0 bg-background z-[100] flex items-center justify-center transition-opacity duration-500"
+      >
+        <div className="text-center">
+          <img
+            src="/lovable-uploads/6be2a70a-e41c-483f-9fe8-e34d2ef3c881.png"
+            alt="Majestic Kingdom Adventure"
+            className="h-24 md:h-32 mx-auto mb-6 animate-pulse"
+          />
+          <div className="w-48 h-1 bg-gray-200 rounded-full mx-auto overflow-hidden">
+            <div className="bg-majestic-gold h-full rounded-full animate-[loader_1.5s_ease-in-out_infinite]"></div>
+          </div>
+        </div>
+      </div>
+
       <Navbar />
       <main className="pb-20">
         <div className="relative h-[60vh] overflow-hidden">
@@ -51,7 +87,7 @@ const DestinationDetail = () => {
         {/* Tab Navigation in the middle (between hero and content) */}
         <div className="container-custom relative">
           <div className="flex justify-center -mt-8 mb-10">
-            <div className="bg-white dark:bg-card rounded-full shadow-lg inline-flex p-1">
+            <div className="bg-white dark:bg-card rounded-full shadow-lg inline-flex p-2">
               {["overview", "highlights", "essential information"].map(
                 (tab) => (
                   <button
@@ -60,7 +96,7 @@ const DestinationDetail = () => {
                     className={`py-3 px-6 font-medium transition-all capitalize rounded-full 
                     ${
                       activeTab === tab
-                        ? "text-majestic-gold relative ring-4 ring-majestic-gold outline-1 outline-majestic-gold"
+                        ? "text-majestic-amber relative ring-4 ring-majestic-amber/30 outline-2 outline-majestic-amber"
                         : "text-muted-foreground hover:text-majestic-gold"
                     }`}
                   >
@@ -167,7 +203,7 @@ const DestinationDetail = () => {
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 };
 
