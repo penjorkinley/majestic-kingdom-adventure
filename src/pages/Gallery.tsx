@@ -52,7 +52,7 @@ const Gallery = () => {
       <main className="overflow-hidden">
         {/* Hero Section */}
         <Hero
-          backgroundImage="https://images.unsplash.com/photo-1599006934204-9e68d61ae8dd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80"
+          backgroundImage="https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/Pelala-Mountain-Pass-Trans-Bhutan-Trail-by-Alicia-Warner-4.jpg"
           title={
             <>
               Bhutan <span className="text-majestic-gold">Gallery</span>

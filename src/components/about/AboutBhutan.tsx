@@ -143,7 +143,7 @@ const AboutBhutan = () => {
               {/* Main image */}
               <div className="rounded-2xl shadow-xl overflow-hidden transform transition-all hover:scale-[1.02] hover:shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1566553253535-2473cf16cf97?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80"
+                  src="https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/Phobjika%20by%20Matt%20Dutile16.jpg"
                   alt="Bhutan Landscape"
                   className="w-full h-full object-cover"
                 />
@@ -152,7 +152,7 @@ const AboutBhutan = () => {
               {/* Decorative floating images */}
               <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-lg overflow-hidden shadow-lg border-2 border-white dark:border-card">
                 <img
-                  src="https://images.unsplash.com/photo-1515248027005-c33283ec3218?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                  src="https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/Phobjika%20by%20Matt%20Dutile1.jpg"
                   alt="Bhutanese Prayer Flags"
                   className="w-full h-full object-cover"
                 />
@@ -160,7 +160,7 @@ const AboutBhutan = () => {
 
               <div className="absolute -top-6 -right-6 w-40 h-40 rounded-lg overflow-hidden shadow-lg border-2 border-white dark:border-card">
                 <img
-                  src="https://images.unsplash.com/photo-1608021821039-66254a26d1fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                  src="https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/Marcus%20Westberg%20Bumthang%20202316.jpg"
                   alt="Bhutanese Architecture"
                   className="w-full h-full object-cover"
                 />

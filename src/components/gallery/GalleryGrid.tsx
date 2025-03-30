@@ -52,12 +52,12 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ photos }) => {
 
   return (
     <div ref={gridRef} className="opacity-0 transition-all duration-700">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 w-[80%] mx-auto">
         {photos.map((photo, index) => (
           <div
             key={photo.id}
             ref={(el) => (photoRefs.current[index] = el)}
-            className="group relative h-80 rounded-xl overflow-hidden shadow-lg transform transition-all duration-500 hover:scale-105 hover:z-10 hover:shadow-xl opacity-0"
+            className="group relative aspect-square overflow-hidden transform transition-all duration-500 hover:scale-105 hover:z-10 opacity-0"
           >
             {/* Background Image */}
             <img

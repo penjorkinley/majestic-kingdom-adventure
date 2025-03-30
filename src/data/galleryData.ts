@@ -12,39 +12,44 @@ export interface PhotoCredit {
 export const photoCredits: PhotoCredit[] = [
   {
     id: 1,
-    image: "/public/paro-taktsang-MarcusWestberg.jpg",
+    image:
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/taktshang4.jpg",
     title: "Tiger's Nest Monastery",
     location: "Paro, Bhutan",
-    photographer: "Marcus Westberg",
+    photographer: "Scarlette DG",
     source: "Department of Tourism, Bhutan",
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1625638332402-57211965d3c4",
+    image:
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/punakhadzong3.jpg",
     title: "Punakha Dzong",
     location: "Punakha, Bhutan",
-    photographer: "Pema Gyalpo",
+    photographer: "Scarlette DG",
     source: "Department of Tourism, Bhutan",
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1609939006851-e4c4328598a9",
+    image:
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/by%20Matt%20Dutile4.jpg",
     title: "Dochula Pass",
     location: "Thimphu, Bhutan",
-    photographer: "Karma Jigme",
+    photographer: "Carissa Nimah",
     source: "Department of Tourism, Bhutan",
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1623677435560-ee1a346141b7",
+    image:
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/th/phobjikha3.jpg",
     title: "Phobjikha Valley",
     location: "Wangdue, Bhutan",
-    photographer: "Sonam Wangchuk",
+    photographer: "Scarlette DG",
     source: "Department of Tourism, Bhutan",
   },
   {
     id: 5,
-    image: "https://images.unsplash.com/photo-1566553253535-2473cf16cf97",
+    image:
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/story%20image%201.jpg",
     title: "Rural Bhutan",
     location: "Bumthang, Bhutan",
     photographer: "Tandin Dorji",
@@ -52,58 +57,65 @@ export const photoCredits: PhotoCredit[] = [
   },
   {
     id: 6,
-    image: "https://images.unsplash.com/photo-1587271407850-8d438ca9fdf2",
+    image:
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/_SCH5022_V2_FINAL_RGB.jpg",
     title: "Bhutanese Guide",
     location: "Thimphu, Bhutan",
-    photographer: "Kinley Wangmo",
+    photographer: "Scarlette DG",
     source: "Department of Tourism, Bhutan",
   },
   {
     id: 7,
-    image: "https://images.unsplash.com/photo-1599006934204-9e68d61ae8dd",
+    image:
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/04%20-%20Chelela%20Pass-9.jpg",
     title: "Prayer Flags",
-    location: "Paro Valley, Bhutan",
-    photographer: "Tshering Penjor",
+    location: "Chelela Pass, Bhutan",
+    photographer: "Kezang Choden",
     source: "Department of Tourism, Bhutan",
   },
   {
     id: 8,
-    image: "https://images.unsplash.com/photo-1520962880247-cfaf541c8724",
-    title: "Spring Landscape",
-    location: "Haa Valley, Bhutan",
-    photographer: "Dorji Dema",
+    image:
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/Bhutan%20Flower%20Show2.jpg",
+    title: "Royal Flower Exibition",
+    location: "Bhutan",
+    photographer: "Scarlette DG",
     source: "Department of Tourism, Bhutan",
   },
   {
     id: 9,
-    image: "https://images.unsplash.com/photo-1558431382-27e303142255",
+    image:
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/punakhadzong2.jpg",
     title: "Traditional Architecture",
     location: "Punakha, Bhutan",
-    photographer: "Tenzin Dorji",
+    photographer: "Scarlette DG",
     source: "Department of Tourism, Bhutan",
   },
   {
     id: 10,
-    image: "https://images.unsplash.com/photo-1556759865-99c732035d5d",
+    image:
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/Thimphu%20tshechu3.jpg",
     title: "Festival Dancer",
-    location: "Paro, Bhutan",
-    photographer: "Karma Yeshi",
+    location: "Thimphu, Bhutan",
+    photographer: "Scarlette DG",
     source: "Department of Tourism, Bhutan",
   },
   {
     id: 11,
-    image: "https://images.unsplash.com/photo-1557394976-53b1eba4c016",
+    image:
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/Laya2.jpg",
     title: "Mountain Village",
     location: "Laya, Bhutan",
-    photographer: "Namgay Tshering",
+    photographer: "Scarlette DG",
     source: "Department of Tourism, Bhutan",
   },
   {
     id: 12,
-    image: "https://images.unsplash.com/photo-1591000849992-902c1804fb39",
+    image:
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/Thimphu%20tshechu2.jpg",
     title: "Buddhism in Bhutan",
     location: "Thimphu, Bhutan",
-    photographer: "Pema Dorji",
+    photographer: "Scarlette DG",
     source: "Department of Tourism, Bhutan",
   },
 ];

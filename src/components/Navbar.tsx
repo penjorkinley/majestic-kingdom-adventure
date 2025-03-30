@@ -28,7 +28,7 @@ const Navbar = () => {
       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-md py-1"
-          : "bg-transparent py-3"
+          : "bg-transparent py-1"
       }`}
     >
       <div className="container-custom flex items-center justify-between">
@@ -60,12 +60,12 @@ const Navbar = () => {
               </Link>
             );
           })}
-          <Link
-            to="/contact"
+          <a
+            href="#contact"
             className="bg-majestic-gold hover:bg-majestic-amber text-white px-6 py-2 rounded-full transition-all hover:shadow-lg hover:scale-105 transform duration-300"
           >
             Contact
-          </Link>
+          </a>
         </nav>
 
         {/* Mobile Menu Button */}
