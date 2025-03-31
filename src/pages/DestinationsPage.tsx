@@ -48,7 +48,7 @@ const DestinationsPage = () => {
       <Navbar />
       <main className="pb-20 overflow-hidden">
         <Hero
-          backgroundImage="https://images.unsplash.com/photo-1523059623039-a9ed027e7fad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80"
+          backgroundImage="../../destination-hero-by-scarlette-DG.jpg"
           title={
             <>
               All <span className="text-majestic-gold">Bhutan</span>{" "}

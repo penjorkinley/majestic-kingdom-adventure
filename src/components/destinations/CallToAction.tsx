@@ -53,10 +53,13 @@ const CallToAction = () => {
   return (
     <div
       ref={containerRef}
-      className="bg-white dark:bg-card rounded-2xl shadow-lg p-8 md:p-12 mb-16 transform transition-all hover:-translate-y-2 hover:shadow-xl duration-500 opacity-0"
+      className="bg-white dark:bg-card rounded-2xl shadow-lg mb-16 transform transition-all hover:-translate-y-2 hover:shadow-xl duration-500 opacity-0"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div ref={contentRef} className="opacity-0 transition-all duration-700">
+        <div
+          ref={contentRef}
+          className="opacity-0 transition-all duration-700 p-8"
+        >
           <h2 className="text-2xl md:text-3xl font-bold mb-6">
             Ready to Experience{" "}
             <span className="text-majestic-gold">Bhutan?</span>
@@ -87,10 +90,10 @@ const CallToAction = () => {
         </div>
         <div
           ref={imageRef}
-          className="relative rounded-xl overflow-hidden h-64 shadow-lg group opacity-0 transition-all duration-700"
+          className="relative rounded-r-xl overflow-hidden h-full shadow-lg group opacity-0 transition-all duration-700"
         >
           <img
-            src="https://images.unsplash.com/photo-1623677435560-ee1a346141b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80"
+            src="../../destination-experience-by-kezang-choden.jpg"
             alt="Bhutan Landscape"
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
           />

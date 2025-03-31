@@ -4,34 +4,30 @@ const seasons = [
   {
     name: "Spring",
     months: "March - May",
-    image:
-      "https://images.unsplash.com/photo-1520962880247-cfaf541c8724?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    image: "../../../spring-MarcusWestberg.jpg",
     description: "Experience blooming rhododendrons and clear mountain views",
-    color: "from-pink-500",
+    color: "from-rose-300",
   },
   {
     name: "Summer",
     months: "June - August",
-    image:
-      "https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    image: "../../../summer-by-Marcus-Westberg.jpg",
     description: "Lush green landscapes with occasional monsoon showers",
-    color: "from-green-500",
+    color: "from-amber-300",
   },
   {
     name: "Autumn",
     months: "September - November",
-    image:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    image: "../../../autumn-scarlette-dg.jpg",
     description: "Clear skies, pleasant temperatures and vibrant festivals",
-    color: "from-amber-500",
+    color: "from-orange-400",
   },
   {
     name: "Winter",
     months: "December - February",
-    image:
-      "https://images.unsplash.com/photo-1483664852095-d6cc6870702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+    image: "../../../winter-scarlette-DG.jpg",
     description: "Snow-capped mountains and traditional hot stone baths",
-    color: "from-blue-500",
+    color: "from-blue-400",
   },
 ];
 
@@ -106,7 +102,7 @@ const SeasonsSection = () => {
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
             <div
-              className={`absolute inset-0 bg-gradient-to-t ${season.color} to-transparent opacity-70 group-hover:opacity-80 transition-opacity duration-300`}
+              className={`absolute inset-0 bg-gradient-to-t ${season.color} to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300`}
             ></div>
 
             <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">

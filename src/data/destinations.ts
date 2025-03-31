@@ -15,7 +15,8 @@ export const destinationDetails: DestinationDetail[] = [
     id: 1,
     name: "Tiger's Nest Monastery",
     location: "Paro, Bhutan",
-    image: "/public/paro-taktsang-MarcusWestberg.jpg",
+    image:
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/taktshang4.jpg",
     description:
       "Explore this iconic monastery perched on a cliff, offering breathtaking views and spiritual significance",
     fullDescription:
@@ -37,7 +38,7 @@ export const destinationDetails: DestinationDetail[] = [
     name: "Punakha Dzong",
     location: "Punakha, Bhutan",
     image:
-      "https://images.unsplash.com/photo-1625638332402-57211965d3c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/punakhadzong3.jpg",
     description:
       "Discover the majestic fortress at the confluence of two rivers, showcasing Bhutan's architectural splendor",
     fullDescription:
@@ -59,7 +60,8 @@ export const destinationDetails: DestinationDetail[] = [
     name: "Dochula Pass",
     location: "Thimphu, Bhutan",
     image:
-      "https://images.unsplash.com/photo-1609939006851-e4c4328598a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/by%20Matt%20Dutile4.jpg",
+
     description:
       "Visit this mountain pass with panoramic Himalayan views and 108 memorial chortens",
     fullDescription:
@@ -81,7 +83,8 @@ export const destinationDetails: DestinationDetail[] = [
     name: "Phobjikha Valley",
     location: "Wangdue, Bhutan",
     image:
-      "https://images.unsplash.com/photo-1623677435560-ee1a346141b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80",
+      "https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/th/phobjikha3.jpg",
+
     description:
       "Journey to this glacial valley, home to endangered black-necked cranes and pristine natural beauty",
     fullDescription:
