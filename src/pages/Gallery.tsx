@@ -61,7 +61,7 @@ const Gallery = () => {
           subtitle="Celebrating the photographers who captured Bhutan's majestic beauty"
           //   buttonText="Learn More"
           //   scrollToId="about-bhutan"
-          fullHeight={false}
+          // fullHeight={false}
         />
 
         <div className="container-custom">

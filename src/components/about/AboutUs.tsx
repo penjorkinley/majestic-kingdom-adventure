@@ -135,7 +135,7 @@ const AboutUs = () => {
         {/* Redesigned Image and Story Section */}
         <div className="relative mb-24">
           {/* Decorative element */}
-          <div className="absolute -top-12 -left-12 w-24 h-24 rounded-full border-4 border-majestic-gold/30 z-0"></div>
+          <div className="absolute -top-16 -left-12 w-24 h-24 rounded-full border-4 border-majestic-gold/30 z-0"></div>
           <div className="absolute -bottom-12 -right-12 w-36 h-36 rounded-full border-4 border-majestic-gold/20 z-0"></div>
 
           {/* Content with overlapping cards */}
@@ -143,21 +143,21 @@ const AboutUs = () => {
             {/* Image Section - Redesigned */}
             <div
               ref={imageRef}
-              className="lg:col-span-6 lg:col-start-1 opacity-0 transition-all duration-700"
+              className="lg:col-span-12 lg:col-start-1 opacity-0 transition-all duration-700"
             >
-              <div className="relative">
+              <div className="relative h-[600px] mt-16">
                 {/* Main image */}
-                <div className="rounded-2xl shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-500">
+                <div className="rounded-2xl w-1/2 h-2/3 shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-500">
                   <img
-                    src="https://images.unsplash.com/photo-1587271407850-8d438ca9fdf2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1700&q=80"
+                    src="../../buddha-point by Amp Sripimanwat.jpg"
                     alt="Bhutan Tour Guide"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover brightness-90"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
                 </div>
 
                 {/* Floating stats cards */}
-                <div className="absolute -top-6 -right-6 bg-white dark:bg-card p-4 rounded-xl shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                {/* <div className="absolute -top-6 -right-6 bg-white dark:bg-card p-4 rounded-xl shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                   <p className="text-3xl font-bold text-majestic-gold">10+</p>
                   <p className="text-sm text-muted-foreground">
                     Years Experience
@@ -167,46 +167,46 @@ const AboutUs = () => {
                 <div className="absolute -bottom-6 -left-6 bg-white dark:bg-card p-4 rounded-xl shadow-lg transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
                   <p className="text-3xl font-bold text-majestic-gold">250+</p>
                   <p className="text-sm text-muted-foreground">Happy Clients</p>
+                </div> */}
+                <div
+                  ref={storyRef}
+                  className="lg:col-span-7 w-1/2 left-[45%]  opacity-0 transition-all duration-700 absolute -top-16 transform translate-x-1/2 "
+                >
+                  <div className="bg-white dark:bg-card rounded-2xl shadow-xl p-8 md:p-10 transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl relative z-20">
+                    <div className="absolute top-0 right-0 -mt-5 -mr-5 w-16 h-16 bg-majestic-gold/20 rounded-full"></div>
+
+                    <h3 className="text-2xl md:text-3xl font-bold mb-6 flex items-center">
+                      <span className="inline-block w-8 h-1 bg-majestic-gold mr-3"></span>
+                      Our Story
+                    </h3>
+
+                    <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                      Majestic Kingdom Adventure is a dedicated tour agency
+                      specializing in personalized travel experiences in Bhutan
+                      and beyond. With a team of experienced guides and travel
+                      experts, we craft journeys that showcase Bhutan's rich
+                      culture, stunning landscapes, and spiritual heritage.
+                    </p>
+
+                    <div className="bg-muted/50 p-6 rounded-xl my-6 border-l-4 border-majestic-gold">
+                      <p className="text-lg italic">
+                        "Our vision is to inspire unforgettable journeys through
+                        Bhutan's majestic landscapes, rich culture, and
+                        authentic experiences."
+                      </p>
+                    </div>
+
+                    <p className="text-lg text-muted-foreground leading-relaxed">
+                      Whether you're seeking cultural immersion, thrilling
+                      adventures, or serene retreats, we ensure a seamless and
+                      enriching journey through this unique Himalayan kingdom.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Story Card - Redesigned */}
-            <div
-              ref={storyRef}
-              className="lg:col-span-7 lg:col-start-6 opacity-0 transition-all duration-700 -mt-12 lg:mt-20"
-            >
-              <div className="bg-white dark:bg-card rounded-2xl shadow-xl p-8 md:p-10 transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl relative z-20">
-                <div className="absolute top-0 right-0 -mt-5 -mr-5 w-16 h-16 bg-majestic-gold/20 rounded-full"></div>
-
-                <h3 className="text-2xl md:text-3xl font-bold mb-6 flex items-center">
-                  <span className="inline-block w-8 h-1 bg-majestic-gold mr-3"></span>
-                  Our Story
-                </h3>
-
-                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                  Majestic Kingdom Adventure is a dedicated tour agency
-                  specializing in personalized travel experiences in Bhutan and
-                  beyond. With a team of experienced guides and travel experts,
-                  we craft journeys that showcase Bhutan's rich culture,
-                  stunning landscapes, and spiritual heritage.
-                </p>
-
-                <div className="bg-muted/50 p-6 rounded-xl my-6 border-l-4 border-majestic-gold">
-                  <p className="text-lg italic">
-                    "Our vision is to inspire unforgettable journeys through
-                    Bhutan's majestic landscapes, rich culture, and authentic
-                    experiences."
-                  </p>
-                </div>
-
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Whether you're seeking cultural immersion, thrilling
-                  adventures, or serene retreats, we ensure a seamless and
-                  enriching journey through this unique Himalayan kingdom.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
 

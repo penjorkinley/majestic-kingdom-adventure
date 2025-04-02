@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import emailjs from "emailjs-com";
+
 import {
   Send,
   Mail,
@@ -55,26 +57,51 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
+
+  //   // Simulate form submission
+  //   setTimeout(() => {
+  //     setIsSubmitting(false);
+  //     setIsSubmitted(true);
+
+  //     // Reset form after showing success message
+  //     setTimeout(() => {
+  //       setIsSubmitted(false);
+  //       setFormData({
+  //         name: "",
+  //         email: "",
+  //         phone: "",
+  //         message: "",
+  //       });
+  //     }, 5000);
+  //   }, 1500);
+  // };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
+    const serviceID = "service_30z1zmm";
+    const templateID = "template_kk1owgq";
+    const userID = "3TPLPpS-bFLrTghaO"; // public key from EmailJS
 
-      // Reset form after showing success message
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          message: "",
-        });
-      }, 5000);
-    }, 1500);
+    emailjs
+      .send(serviceID, templateID, formData, userID)
+      .then(() => {
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        setFormData({ name: "", email: "", phone: "", message: "" });
+
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      })
+      .catch((err) => {
+        setIsSubmitting(false);
+        console.error("Email failed to send:", err);
+      });
   };
 
   return (
@@ -111,7 +138,7 @@ const Contact = () => {
             className="lg:col-span-5 bg-white dark:bg-card rounded-2xl shadow-xl overflow-hidden opacity-0 transition-all duration-700"
           >
             <div className="h-32 bg-gradient-to-r from-majestic-amber to-majestic-gold relative">
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558431382-27e303142255?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')] opacity-20 bg-cover bg-center"></div>
+              <div className="absolute inset-0 bg-[url('../../thimphu-dzong-Ben-Richards.jpg')] opacity-20 bg-cover bg-center"></div>
               <div className="absolute inset-0 flex items-center justify-center">
                 <h3 className="text-2xl font-bold text-white">
                   Contact Information

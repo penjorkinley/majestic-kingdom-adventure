@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
+import Gallery from "@/pages/Gallery";
+import { HashLink } from "react-router-hash-link";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,16 +11,21 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       // Update navbar background based on scroll position
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
+      if (isMenuOpen) {
         setIsScrolled(false);
+      } else {
+        if (window.scrollY > 10) {
+          setIsScrolled(true);
+        } else {
+          setIsScrolled(false);
+        }
       }
     };
-
+    handleScroll();
+    // Check initial scroll position
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isMenuOpen, setIsMenuOpen]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -60,12 +67,18 @@ const Navbar = () => {
               </Link>
             );
           })}
-          <a
-            href="#contact"
-            className="bg-majestic-gold hover:bg-majestic-amber text-white px-6 py-2 rounded-full transition-all hover:shadow-lg hover:scale-105 transform duration-300"
+          <HashLink
+            smooth
+            to="/#contact"
+            className={`font-medium hover:text-majestic-gold transition-colors underline-animation
+                ${
+                  isScrolled
+                    ? "text-foreground/90 dark:text-white/90"
+                    : "text-white"
+                }`}
           >
             Contact
-          </a>
+          </HashLink>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -82,11 +95,10 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden fixed inset-0 bg-background z-40 transform transition-transform duration-300 ease-in-out ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`md:hidden h-screen fixed inset-0 bg-white dark:bg-black backdrop-blur-md z-40 transform transition-transform duration-300 ease-in-out
+          ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
       >
-        <div className="flex flex-col h-full p-8 pt-24">
+        <div className="flex flex-col h-full p-8 pt-24 ">
           {/* Close button */}
           <button
             className="absolute top-6 right-6 p-2 rounded-full bg-muted hover:bg-muted/80 transition-colors"
@@ -96,8 +108,8 @@ const Navbar = () => {
             <X size={24} />
           </button>
 
-          <div className="flex flex-col space-y-6">
-            {["Home", "Destinations", "About", "Contact"].map((item) => {
+          <nav className="flex flex-col space-y-6 ">
+            {["Home", "Destinations", "About", "Gallery"].map((item) => {
               const linkTo = item === "Home" ? "/" : `/${item.toLowerCase()}`;
 
               return (
@@ -111,7 +123,15 @@ const Navbar = () => {
                 </Link>
               );
             })}
-          </div>
+            <HashLink
+              smooth
+              to="/#contact"
+              className="text-xl font-medium py-2 border-b border-muted hover:text-majestic-gold transition-colors"
+              onClick={closeMenu}
+            >
+              Contact
+            </HashLink>
+          </nav>
         </div>
       </div>
     </header>
