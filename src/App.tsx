@@ -6,9 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import About from "./pages/About";
-import DestinationDetail from "./pages/DestinationDetail";
 import NotFound from "./pages/NotFound";
 import DestinationsPage from "./pages/DestinationsPage";
+import DestinationCategoryPage from "./pages/DestinationCategoryPage";
 import Gallery from "./pages/Gallery";
 import TravelGuide from "./pages/TravelGuide";
 
@@ -25,7 +25,11 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/destinations" element={<DestinationsPage />} />
-          <Route path="/destination/:id" element={<DestinationDetail />} />
+          <Route
+            path="/destination-category/:id"
+            element={<DestinationCategoryPage />}
+          />
+
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/travel-guide" element={<TravelGuide />} />
 

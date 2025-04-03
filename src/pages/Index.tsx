@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/home/Hero";
 import Destinations from "@/components/home/Destinations";
+import DestinationCategories from "@/components/destinations/DestinationCategories";
+
 // import Testimonials from "@/components/home/Testimonials";
 import ParallaxPlaceholder from "@/components/home/ParallaxPlaceholder";
 import Contact from "@/components/home/Contact";
@@ -49,7 +51,7 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
-        <Destinations />
+        <DestinationCategories limit={4} randomize={true} />
         {/* <Testimonials />
          */}
         <ParallaxPlaceholder />

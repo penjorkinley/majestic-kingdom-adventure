@@ -1,8 +1,9 @@
+// src/pages/DestinationsPage.tsx
 import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import AllDestinations from "@/components/destinations/AllDestinations";
+import DestinationCategories from "@/components/destinations/DestinationCategories";
 import SeasonsSection from "@/components/destinations/SeasonsSection";
 import CallToAction from "@/components/destinations/CallToAction";
 
@@ -51,18 +52,22 @@ const DestinationsPage = () => {
           backgroundImage="../../destination-hero-by-scarlette-DG.jpg"
           title={
             <>
-              All <span className="text-majestic-gold">Bhutan</span>{" "}
-              Destinations
+              <span className="text-majestic-gold">Explore</span> Bhutan
             </>
           }
-          subtitle="Explore the hidden gems and iconic landmarks of the Land of the Thunder Dragon"
-          buttonText="Discover Destinations"
-          scrollToId="destinations-section"
+          subtitle="Discover the hidden gems and iconic landmarks of the Land of the Thunder Dragon"
+          buttonText="Browse Categories"
+          scrollToId="destination-categories"
           fullHeight={true}
         />
         <div className="container-custom relative">
-          <AllDestinations />
+          {/* Destination Categories */}
+          <DestinationCategories />
+
+          {/* Seasons Section */}
           <SeasonsSection />
+
+          {/* Call to Action */}
           <CallToAction />
         </div>
       </main>
