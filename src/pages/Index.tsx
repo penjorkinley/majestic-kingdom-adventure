@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/home/Hero";
 import Destinations from "@/components/home/Destinations";
-import Testimonials from "@/components/home/Testimonials";
+// import Testimonials from "@/components/home/Testimonials";
+import ParallaxPlaceholder from "@/components/home/ParallaxPlaceholder";
 import Contact from "@/components/home/Contact";
 import Footer from "@/components/Footer";
 
@@ -49,7 +50,9 @@ const Index = () => {
       <main>
         <Hero />
         <Destinations />
-        <Testimonials />
+        {/* <Testimonials />
+         */}
+        <ParallaxPlaceholder />
         <Contact />
       </main>
       <Footer />

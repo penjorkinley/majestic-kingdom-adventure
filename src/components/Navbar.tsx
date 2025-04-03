@@ -50,7 +50,7 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 items-center">
-          {["Home", "Destinations", "About", "Gallery", "Travel Guide"].map(
+          {["Home", "Destinations", "About", "Travel Guide", "Gallery"].map(
             (item) => {
               const linkTo =
                 item === "Home"
@@ -114,9 +114,8 @@ const Navbar = () => {
           </button>
 
           <nav className="flex flex-col space-y-6 ">
-            {["Home", "Destinations", "About", "Gallery", "Travel Guide"].map(
+            {["Home", "Destinations", "About", "Travel Guide", "Gallery"].map(
               (item) => {
-                // Convert "Travel Guide" to "travel-guide" for URL, other items follow the same pattern
                 const linkTo =
                   item === "Home"
                     ? "/"
