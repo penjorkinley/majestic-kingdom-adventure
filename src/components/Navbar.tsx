@@ -50,23 +50,28 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 items-center">
-          {["Home", "Destinations", "About", "Gallery"].map((item) => {
-            const linkTo = item === "Home" ? "/" : `/${item.toLowerCase()}`;
+          {["Home", "Destinations", "About", "Gallery", "Travel Guide"].map(
+            (item) => {
+              const linkTo =
+                item === "Home"
+                  ? "/"
+                  : `/${item.toLowerCase().replace(/\s+/g, "-")}`;
 
-            return (
-              <Link
-                key={item}
-                to={linkTo}
-                className={`font-medium hover:text-majestic-gold transition-colors underline-animation ${
-                  isScrolled
-                    ? "text-foreground/90 dark:text-white/90"
-                    : "text-white"
-                }`}
-              >
-                {item}
-              </Link>
-            );
-          })}
+              return (
+                <Link
+                  key={item}
+                  to={linkTo}
+                  className={`font-medium hover:text-majestic-gold transition-colors underline-animation ${
+                    isScrolled
+                      ? "text-foreground/90 dark:text-white/90"
+                      : "text-white"
+                  }`}
+                >
+                  {item}
+                </Link>
+              );
+            }
+          )}
           <HashLink
             smooth
             to="/#contact"
@@ -109,20 +114,26 @@ const Navbar = () => {
           </button>
 
           <nav className="flex flex-col space-y-6 ">
-            {["Home", "Destinations", "About", "Gallery"].map((item) => {
-              const linkTo = item === "Home" ? "/" : `/${item.toLowerCase()}`;
+            {["Home", "Destinations", "About", "Gallery", "Travel Guide"].map(
+              (item) => {
+                // Convert "Travel Guide" to "travel-guide" for URL, other items follow the same pattern
+                const linkTo =
+                  item === "Home"
+                    ? "/"
+                    : `/${item.toLowerCase().replace(/\s+/g, "-")}`;
 
-              return (
-                <Link
-                  key={item}
-                  to={linkTo}
-                  className="text-xl font-medium py-2 border-b border-muted hover:text-majestic-gold transition-colors"
-                  onClick={closeMenu}
-                >
-                  {item}
-                </Link>
-              );
-            })}
+                return (
+                  <Link
+                    key={item}
+                    to={linkTo}
+                    className="text-xl font-medium py-2 border-b border-muted hover:text-majestic-gold transition-colors"
+                    onClick={closeMenu}
+                  >
+                    {item}
+                  </Link>
+                );
+              }
+            )}
             <HashLink
               smooth
               to="/#contact"
