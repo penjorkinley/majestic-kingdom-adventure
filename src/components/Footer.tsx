@@ -6,7 +6,7 @@ import {
   Mail,
   Facebook,
   Instagram,
-  Twitter,
+  MessageCircle,
   Linkedin,
   Youtube,
 } from "lucide-react";
@@ -38,12 +38,12 @@ const Footer = () => {
               <li className="flex items-start">
                 <MapPin className="w-5 h-5 text-majestic-gold mt-1 mr-3 flex-shrink-0" />
                 <span className="text-gray-400">
-                  123 Norzin Lam, Thimphu, Bhutan
+                  387 Zachoe Lam SW Chang Zamtok, Thimphu Bhutan
                 </span>
               </li>
               <li className="flex items-start">
                 <Phone className="w-5 h-5 text-majestic-gold mt-1 mr-3 flex-shrink-0" />
-                <span className="text-gray-400">+975 2 123 4567</span>
+                <span className="text-gray-400">+975 17875602</span>
               </li>
               <li className="flex items-start">
                 <Mail className="w-5 h-5 text-majestic-gold mt-1 mr-3 flex-shrink-0" />
@@ -51,7 +51,7 @@ const Footer = () => {
                   href="mailto:info@majestickingdom.bt"
                   className="text-gray-400 hover:text-majestic-gold transition-colors"
                 >
-                  info@majestickingdom.bt
+                  majestickingdomadventure@gmail.com{" "}
                 </a>
               </li>
             </ul>
@@ -61,40 +61,48 @@ const Footer = () => {
             <h4 className="text-xl font-bold mb-6">Follow Us</h4>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://m.facebook.com/share/1C6zQeDAkU/?from_xma_click=xma_web_url&xma_click_id=DD47BF0F-F17E-4FDC-ABFC-96C86408FA48&tam_xma_content_type=0&is_fb_content=true&forward=false&ts=1743729198053&pl=1&wtsid=rdr_00d5dGknmtWaXTY0v"
                 className="bg-gray-800 hover:bg-majestic-gold w-10 h-10 rounded-full flex items-center justify-center transition-colors"
                 aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Facebook size={18} />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/majestic.kingdom.adventures?igsh=MXY3bnMxcWtza2Q1Ng=="
                 className="bg-gray-800 hover:bg-majestic-gold w-10 h-10 rounded-full flex items-center justify-center transition-colors"
                 aria-label="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Instagram size={18} />
               </a>
               <a
                 href="#"
                 className="bg-gray-800 hover:bg-majestic-gold w-10 h-10 rounded-full flex items-center justify-center transition-colors"
-                aria-label="Twitter"
+                aria-label="Whatsapp"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Twitter size={18} />
+                <MessageCircle size={18} />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/company/majestic-kingdom-adventure?trk=blended-typeahead"
                 className="bg-gray-800 hover:bg-majestic-gold w-10 h-10 rounded-full flex items-center justify-center transition-colors"
                 aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Linkedin size={18} />
               </a>
-              <a
+              {/* <a
                 href="#"
                 className="bg-gray-800 hover:bg-majestic-gold w-10 h-10 rounded-full flex items-center justify-center transition-colors"
                 aria-label="YouTube"
               >
                 <Youtube size={18} />
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

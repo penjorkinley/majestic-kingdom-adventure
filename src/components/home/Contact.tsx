@@ -8,24 +8,282 @@ import {
   MapPin,
   Facebook,
   Instagram,
-  Twitter,
+  MessageCircle, // Replaced Twitter with MessageCircle for WhatsApp
   Linkedin,
+  Calendar,
 } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    middleName: "",
+    lastName: "",
     email: "",
     phone: "",
+    country: "",
+    daysOfVisit: "",
     message: "",
   });
 
+  const [countries, setCountries] = useState<{ name: string; code: string }[]>(
+    []
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoadingCountries, setIsLoadingCountries] = useState(true);
 
   const contactRef = useRef<HTMLDivElement>(null);
   const formContainerRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
+
+  // Fetch countries from API
+  useEffect(() => {
+    const fetchCountries = async () => {
+      setIsLoadingCountries(true);
+
+      try {
+        // First try the REST Countries API
+        const response = await fetch("https://restcountries.com/v3.1/all", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // Set a timeout to avoid hanging requests
+          signal: AbortSignal.timeout(10000),
+        });
+
+        if (!response.ok) {
+          throw new Error(`API responded with status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (Array.isArray(data) && data.length > 0) {
+          const formattedCountries = data
+            .filter((country) => country.name && country.name.common)
+            .map((country: any) => ({
+              name: country.name.common,
+              code:
+                country.cca2 ||
+                country.name.common.substring(0, 2).toUpperCase(),
+            }))
+            .sort((a: any, b: any) => a.name.localeCompare(b.name));
+
+          if (formattedCountries.length > 0) {
+            setCountries(formattedCountries);
+            setIsLoadingCountries(false);
+            return;
+          }
+        }
+
+        // If we get here, the API didn't return useful data, so use fallback
+        throw new Error("API returned invalid data format");
+      } catch (error) {
+        console.error("Error fetching countries from API:", error);
+        // Fallback with a comprehensive list of countries
+        setCountries([
+          { name: "Afghanistan", code: "AF" },
+          { name: "Albania", code: "AL" },
+          { name: "Algeria", code: "DZ" },
+          { name: "Andorra", code: "AD" },
+          { name: "Angola", code: "AO" },
+          { name: "Antigua and Barbuda", code: "AG" },
+          { name: "Argentina", code: "AR" },
+          { name: "Armenia", code: "AM" },
+          { name: "Australia", code: "AU" },
+          { name: "Austria", code: "AT" },
+          { name: "Azerbaijan", code: "AZ" },
+          { name: "Bahamas", code: "BS" },
+          { name: "Bahrain", code: "BH" },
+          { name: "Bangladesh", code: "BD" },
+          { name: "Barbados", code: "BB" },
+          { name: "Belarus", code: "BY" },
+          { name: "Belgium", code: "BE" },
+          { name: "Belize", code: "BZ" },
+          { name: "Benin", code: "BJ" },
+          { name: "Bhutan", code: "BT" },
+          { name: "Bolivia", code: "BO" },
+          { name: "Bosnia and Herzegovina", code: "BA" },
+          { name: "Botswana", code: "BW" },
+          { name: "Brazil", code: "BR" },
+          { name: "Brunei", code: "BN" },
+          { name: "Bulgaria", code: "BG" },
+          { name: "Burkina Faso", code: "BF" },
+          { name: "Burundi", code: "BI" },
+          { name: "Cabo Verde", code: "CV" },
+          { name: "Cambodia", code: "KH" },
+          { name: "Cameroon", code: "CM" },
+          { name: "Canada", code: "CA" },
+          { name: "Central African Republic", code: "CF" },
+          { name: "Chad", code: "TD" },
+          { name: "Chile", code: "CL" },
+          { name: "China", code: "CN" },
+          { name: "Colombia", code: "CO" },
+          { name: "Comoros", code: "KM" },
+          { name: "Congo", code: "CG" },
+          { name: "Costa Rica", code: "CR" },
+          { name: "Croatia", code: "HR" },
+          { name: "Cuba", code: "CU" },
+          { name: "Cyprus", code: "CY" },
+          { name: "Czech Republic", code: "CZ" },
+          { name: "Denmark", code: "DK" },
+          { name: "Djibouti", code: "DJ" },
+          { name: "Dominica", code: "DM" },
+          { name: "Dominican Republic", code: "DO" },
+          { name: "Ecuador", code: "EC" },
+          { name: "Egypt", code: "EG" },
+          { name: "El Salvador", code: "SV" },
+          { name: "Equatorial Guinea", code: "GQ" },
+          { name: "Eritrea", code: "ER" },
+          { name: "Estonia", code: "EE" },
+          { name: "Eswatini", code: "SZ" },
+          { name: "Ethiopia", code: "ET" },
+          { name: "Fiji", code: "FJ" },
+          { name: "Finland", code: "FI" },
+          { name: "France", code: "FR" },
+          { name: "Gabon", code: "GA" },
+          { name: "Gambia", code: "GM" },
+          { name: "Georgia", code: "GE" },
+          { name: "Germany", code: "DE" },
+          { name: "Ghana", code: "GH" },
+          { name: "Greece", code: "GR" },
+          { name: "Grenada", code: "GD" },
+          { name: "Guatemala", code: "GT" },
+          { name: "Guinea", code: "GN" },
+          { name: "Guinea-Bissau", code: "GW" },
+          { name: "Guyana", code: "GY" },
+          { name: "Haiti", code: "HT" },
+          { name: "Honduras", code: "HN" },
+          { name: "Hungary", code: "HU" },
+          { name: "Iceland", code: "IS" },
+          { name: "India", code: "IN" },
+          { name: "Indonesia", code: "ID" },
+          { name: "Iran", code: "IR" },
+          { name: "Iraq", code: "IQ" },
+          { name: "Ireland", code: "IE" },
+          { name: "Israel", code: "IL" },
+          { name: "Italy", code: "IT" },
+          { name: "Jamaica", code: "JM" },
+          { name: "Japan", code: "JP" },
+          { name: "Jordan", code: "JO" },
+          { name: "Kazakhstan", code: "KZ" },
+          { name: "Kenya", code: "KE" },
+          { name: "Kiribati", code: "KI" },
+          { name: "Korea, North", code: "KP" },
+          { name: "Korea, South", code: "KR" },
+          { name: "Kuwait", code: "KW" },
+          { name: "Kyrgyzstan", code: "KG" },
+          { name: "Laos", code: "LA" },
+          { name: "Latvia", code: "LV" },
+          { name: "Lebanon", code: "LB" },
+          { name: "Lesotho", code: "LS" },
+          { name: "Liberia", code: "LR" },
+          { name: "Libya", code: "LY" },
+          { name: "Liechtenstein", code: "LI" },
+          { name: "Lithuania", code: "LT" },
+          { name: "Luxembourg", code: "LU" },
+          { name: "Madagascar", code: "MG" },
+          { name: "Malawi", code: "MW" },
+          { name: "Malaysia", code: "MY" },
+          { name: "Maldives", code: "MV" },
+          { name: "Mali", code: "ML" },
+          { name: "Malta", code: "MT" },
+          { name: "Marshall Islands", code: "MH" },
+          { name: "Mauritania", code: "MR" },
+          { name: "Mauritius", code: "MU" },
+          { name: "Mexico", code: "MX" },
+          { name: "Micronesia", code: "FM" },
+          { name: "Moldova", code: "MD" },
+          { name: "Monaco", code: "MC" },
+          { name: "Mongolia", code: "MN" },
+          { name: "Montenegro", code: "ME" },
+          { name: "Morocco", code: "MA" },
+          { name: "Mozambique", code: "MZ" },
+          { name: "Myanmar", code: "MM" },
+          { name: "Namibia", code: "NA" },
+          { name: "Nauru", code: "NR" },
+          { name: "Nepal", code: "NP" },
+          { name: "Netherlands", code: "NL" },
+          { name: "New Zealand", code: "NZ" },
+          { name: "Nicaragua", code: "NI" },
+          { name: "Niger", code: "NE" },
+          { name: "Nigeria", code: "NG" },
+          { name: "North Macedonia", code: "MK" },
+          { name: "Norway", code: "NO" },
+          { name: "Oman", code: "OM" },
+          { name: "Pakistan", code: "PK" },
+          { name: "Palau", code: "PW" },
+          { name: "Palestine", code: "PS" },
+          { name: "Panama", code: "PA" },
+          { name: "Papua New Guinea", code: "PG" },
+          { name: "Paraguay", code: "PY" },
+          { name: "Peru", code: "PE" },
+          { name: "Philippines", code: "PH" },
+          { name: "Poland", code: "PL" },
+          { name: "Portugal", code: "PT" },
+          { name: "Qatar", code: "QA" },
+          { name: "Romania", code: "RO" },
+          { name: "Russia", code: "RU" },
+          { name: "Rwanda", code: "RW" },
+          { name: "Saint Kitts and Nevis", code: "KN" },
+          { name: "Saint Lucia", code: "LC" },
+          { name: "Saint Vincent and the Grenadines", code: "VC" },
+          { name: "Samoa", code: "WS" },
+          { name: "San Marino", code: "SM" },
+          { name: "Sao Tome and Principe", code: "ST" },
+          { name: "Saudi Arabia", code: "SA" },
+          { name: "Senegal", code: "SN" },
+          { name: "Serbia", code: "RS" },
+          { name: "Seychelles", code: "SC" },
+          { name: "Sierra Leone", code: "SL" },
+          { name: "Singapore", code: "SG" },
+          { name: "Slovakia", code: "SK" },
+          { name: "Slovenia", code: "SI" },
+          { name: "Solomon Islands", code: "SB" },
+          { name: "Somalia", code: "SO" },
+          { name: "South Africa", code: "ZA" },
+          { name: "South Sudan", code: "SS" },
+          { name: "Spain", code: "ES" },
+          { name: "Sri Lanka", code: "LK" },
+          { name: "Sudan", code: "SD" },
+          { name: "Suriname", code: "SR" },
+          { name: "Sweden", code: "SE" },
+          { name: "Switzerland", code: "CH" },
+          { name: "Syria", code: "SY" },
+          { name: "Taiwan", code: "TW" },
+          { name: "Tajikistan", code: "TJ" },
+          { name: "Tanzania", code: "TZ" },
+          { name: "Thailand", code: "TH" },
+          { name: "Timor-Leste", code: "TL" },
+          { name: "Togo", code: "TG" },
+          { name: "Tonga", code: "TO" },
+          { name: "Trinidad and Tobago", code: "TT" },
+          { name: "Tunisia", code: "TN" },
+          { name: "Turkey", code: "TR" },
+          { name: "Turkmenistan", code: "TM" },
+          { name: "Tuvalu", code: "TV" },
+          { name: "Uganda", code: "UG" },
+          { name: "Ukraine", code: "UA" },
+          { name: "United Arab Emirates", code: "AE" },
+          { name: "United Kingdom", code: "GB" },
+          { name: "United States", code: "US" },
+          { name: "Uruguay", code: "UY" },
+          { name: "Uzbekistan", code: "UZ" },
+          { name: "Vanuatu", code: "VU" },
+          { name: "Vatican City", code: "VA" },
+          { name: "Venezuela", code: "VE" },
+          { name: "Vietnam", code: "VN" },
+          { name: "Yemen", code: "YE" },
+          { name: "Zambia", code: "ZM" },
+          { name: "Zimbabwe", code: "ZW" },
+        ]);
+      } finally {
+        setIsLoadingCountries(false);
+      }
+    };
+
+    fetchCountries();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -57,42 +315,35 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setIsSubmitting(true);
-
-  //   // Simulate form submission
-  //   setTimeout(() => {
-  //     setIsSubmitting(false);
-  //     setIsSubmitted(true);
-
-  //     // Reset form after showing success message
-  //     setTimeout(() => {
-  //       setIsSubmitted(false);
-  //       setFormData({
-  //         name: "",
-  //         email: "",
-  //         phone: "",
-  //         message: "",
-  //       });
-  //     }, 5000);
-  //   }, 1500);
-  // };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // Combine the name fields for EmailJS
+    const emailJSFormData = {
+      ...formData,
+      name: `${formData.firstName} ${formData.middleName} ${formData.lastName}`.trim(),
+    };
 
     const serviceID = "service_30z1zmm";
     const templateID = "template_kk1owgq";
     const userID = "3TPLPpS-bFLrTghaO"; // public key from EmailJS
 
     emailjs
-      .send(serviceID, templateID, formData, userID)
+      .send(serviceID, templateID, emailJSFormData, userID)
       .then(() => {
         setIsSubmitting(false);
         setIsSubmitted(true);
-        setFormData({ name: "", email: "", phone: "", message: "" });
+        setFormData({
+          firstName: "",
+          middleName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          country: "",
+          daysOfVisit: "",
+          message: "",
+        });
 
         setTimeout(() => {
           setIsSubmitted(false);
@@ -155,16 +406,10 @@ const Contact = () => {
                   <div>
                     <h4 className="font-medium text-lg mb-1">Email Us</h4>
                     <a
-                      href="mailto:info@majestickingdom.com"
+                      href="mailto:majestickingdomadventure@gmail.com"
                       className="text-muted-foreground hover:text-majestic-gold transition-colors block"
                     >
-                      info@majestickingdom.com
-                    </a>
-                    <a
-                      href="mailto:bookings@majestickingdom.com"
-                      className="text-muted-foreground hover:text-majestic-gold transition-colors block"
-                    >
-                      bookings@majestickingdom.com
+                      majestickingdomadventure@gmail.com{" "}
                     </a>
                   </div>
                 </div>
@@ -175,8 +420,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-lg mb-1">Call Us</h4>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
-                    <p className="text-muted-foreground">+1 (555) 765-4321</p>
+                    <p className="text-muted-foreground">+975 17875602</p>
                   </div>
                 </div>
 
@@ -186,10 +430,11 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-lg mb-1">Visit Us</h4>
-                    <p className="text-muted-foreground">123 Temple Street</p>
+                    <p className="text-muted-foreground">387 Zachoe Lam SW</p>
                     <p className="text-muted-foreground">
-                      Golden City, Kingdom 12345
+                      Chang Zamtok, Thimphu{" "}
                     </p>
+                    <p className="text-muted-foreground">Bhutan </p>
                   </div>
                 </div>
               </div>
@@ -198,15 +443,33 @@ const Contact = () => {
                 <h4 className="font-medium mb-5">Connect With Us</h4>
                 <div className="flex space-x-3">
                   {[
-                    { icon: <Facebook size={18} />, label: "Facebook" },
-                    { icon: <Instagram size={18} />, label: "Instagram" },
-                    { icon: <Twitter size={18} />, label: "Twitter" },
-                    { icon: <Linkedin size={18} />, label: "LinkedIn" },
+                    {
+                      icon: <Facebook size={18} />,
+                      label: "Facebook",
+                      url: "https://m.facebook.com/share/1C6zQeDAkU/?from_xma_click=xma_web_url&xma_click_id=DD47BF0F-F17E-4FDC-ABFC-96C86408FA48&tam_xma_content_type=0&is_fb_content=true&forward=false&ts=1743729198053&pl=1&wtsid=rdr_00d5dGknmtWaXTY0v",
+                    },
+                    {
+                      icon: <Instagram size={18} />,
+                      label: "Instagram",
+                      url: "https://www.instagram.com/majestic.kingdom.adventures?igsh=MXY3bnMxcWtza2Q1Ng==",
+                    },
+                    {
+                      icon: <MessageCircle size={18} />,
+                      label: "WhatsApp",
+                      url: "#", // Placeholder for WhatsApp link
+                    },
+                    {
+                      icon: <Linkedin size={18} />,
+                      label: "LinkedIn",
+                      url: "https://www.linkedin.com/company/majestic-kingdom-adventure?trk=blended-typeahead",
+                    },
                   ].map((social, idx) => (
                     <a
                       key={idx}
-                      href="#"
+                      href={social.url}
                       aria-label={social.label}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="w-10 h-10 rounded-full flex items-center justify-center bg-muted transition-all duration-300 hover:bg-majestic-gold hover:text-white hover:scale-110 hover:shadow-lg"
                     >
                       {social.icon}
@@ -254,19 +517,20 @@ const Contact = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Name Fields - First, Middle, Last */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="group">
                     <label
-                      htmlFor="name"
+                      htmlFor="firstName"
                       className="block text-sm font-medium text-muted-foreground mb-1 transition-all group-focus-within:text-majestic-gold"
                     >
-                      Your Name
+                      First Name*
                     </label>
                     <input
                       type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
+                      id="firstName"
+                      name="firstName"
+                      value={formData.firstName}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg border bg-transparent focus:ring-2 focus:ring-majestic-gold/50 focus:border-majestic-gold transition-all outline-none"
                       required
@@ -275,10 +539,48 @@ const Contact = () => {
 
                   <div className="group">
                     <label
+                      htmlFor="middleName"
+                      className="block text-sm font-medium text-muted-foreground mb-1 transition-all group-focus-within:text-majestic-gold"
+                    >
+                      Middle Name
+                    </label>
+                    <input
+                      type="text"
+                      id="middleName"
+                      name="middleName"
+                      value={formData.middleName}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg border bg-transparent focus:ring-2 focus:ring-majestic-gold/50 focus:border-majestic-gold transition-all outline-none"
+                    />
+                  </div>
+
+                  <div className="group">
+                    <label
+                      htmlFor="lastName"
+                      className="block text-sm font-medium text-muted-foreground mb-1 transition-all group-focus-within:text-majestic-gold"
+                    >
+                      Last Name*
+                    </label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg border bg-transparent focus:ring-2 focus:ring-majestic-gold/50 focus:border-majestic-gold transition-all outline-none"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Email and Phone */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="group">
+                    <label
                       htmlFor="email"
                       className="block text-sm font-medium text-muted-foreground mb-1 transition-all group-focus-within:text-majestic-gold"
                     >
-                      Email Address
+                      Email Address*
                     </label>
                     <input
                       type="email"
@@ -290,15 +592,13 @@ const Contact = () => {
                       required
                     />
                   </div>
-                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="group">
                     <label
                       htmlFor="phone"
                       className="block text-sm font-medium text-muted-foreground mb-1 transition-all group-focus-within:text-majestic-gold"
                     >
-                      Phone Number
+                      Phone Number*
                     </label>
                     <input
                       type="tel"
@@ -307,16 +607,77 @@ const Contact = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 rounded-lg border bg-transparent focus:ring-2 focus:ring-majestic-gold/50 focus:border-majestic-gold transition-all outline-none"
+                      required
                     />
                   </div>
                 </div>
 
+                {/* Country and Days of Visit */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="group">
+                    <label
+                      htmlFor="country"
+                      className="block text-sm font-medium text-muted-foreground mb-1 transition-all group-focus-within:text-majestic-gold"
+                    >
+                      Country of Residence*
+                    </label>
+                    <select
+                      id="country"
+                      name="country"
+                      value={formData.country}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg border bg-transparent focus:ring-2 focus:ring-majestic-gold/50 focus:border-majestic-gold transition-all outline-none"
+                      required
+                      disabled={isLoadingCountries}
+                    >
+                      <option value="">Select your country</option>
+                      {isLoadingCountries ? (
+                        <option value="" disabled>
+                          Loading countries...
+                        </option>
+                      ) : (
+                        countries.map((country) => (
+                          <option key={country.code} value={country.name}>
+                            {country.name}
+                          </option>
+                        ))
+                      )}
+                    </select>
+                  </div>
+
+                  <div className="group">
+                    <label
+                      htmlFor="daysOfVisit"
+                      className="block text-sm font-medium text-muted-foreground mb-1 transition-all group-focus-within:text-majestic-gold"
+                    >
+                      Number of Days for Visit*
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="number"
+                        id="daysOfVisit"
+                        name="daysOfVisit"
+                        value={formData.daysOfVisit}
+                        onChange={handleChange}
+                        min="1"
+                        max="100"
+                        className="w-full px-4 py-3 rounded-lg border bg-transparent focus:ring-2 focus:ring-majestic-gold/50 focus:border-majestic-gold transition-all outline-none"
+                        required
+                      />
+                      <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                        <Calendar size={18} className="text-muted-foreground" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Message */}
                 <div className="group">
                   <label
                     htmlFor="message"
                     className="block text-sm font-medium text-muted-foreground mb-1 transition-all group-focus-within:text-majestic-gold"
                   >
-                    Your Message
+                    Your Message*
                   </label>
                   <textarea
                     id="message"
