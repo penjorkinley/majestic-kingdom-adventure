@@ -1,46 +1,14 @@
 // src/pages/Gallery.tsx
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import GalleryTitle from "@/components/gallery/GalleryTitle";
 import GalleryGrid from "@/components/gallery/GalleryGrid";
 import GalleryCopyright from "@/components/gallery/GalleryCopyright";
-import { categoryDestinations } from "@/data/categoryDestinations";
-import { additionalPhotos } from "@/data/additionalGalleryData";
-import { PhotoCredit } from "@/data/galleryData";
+import { photoCredits } from "@/data/galleryData";
 
 const Gallery = () => {
-  // Combine destination photos with additional photos
-  const allPhotos = useMemo(() => {
-    // Extract photos from categoryDestinations
-    const destinationPhotos = categoryDestinations.flatMap((category) =>
-      category.items.map((item) => ({
-        id: item.id,
-        image: item.image,
-        title: item.name,
-        location: item.location,
-        photographer: item.photographer || "Tourism Council of Bhutan",
-        source: item.source || "Department of Tourism, Bhutan",
-      }))
-    );
-
-    // Convert additional photos to match PhotoCredit format
-    const formattedAdditionalPhotos: PhotoCredit[] = additionalPhotos.map(
-      (photo) => ({
-        id: photo.id + 1000, // Ensure IDs don't conflict with destination photos
-        image: photo.imageUrl,
-        title: photo.title,
-        location: photo.location,
-        photographer: photo.photographer,
-        source: photo.source,
-      })
-    );
-
-    // Combine both arrays and return
-    return [...destinationPhotos, ...formattedAdditionalPhotos];
-  }, []);
-
   // Add a preloader effect
   useEffect(() => {
     const body = document.body;
@@ -90,15 +58,18 @@ const Gallery = () => {
               Bhutan <span className="text-majestic-gold">Gallery</span>
             </>
           }
-          subtitle="A visual journey through the kingdom's most beautiful destinations"
+          subtitle="Celebrating the photographers who captured Bhutan's majestic beauty"
+          //   buttonText="Learn More"
+          //   scrollToId="about-bhutan"
+          // fullHeight={false}
         />
 
         <div className="container-custom">
           <section id="gallery-section" className="py-16 md:py-24">
             <GalleryTitle />
 
-            {/* Gallery grid/carousel */}
-            <GalleryGrid photos={allPhotos} />
+            {/* Gallery grid */}
+            <GalleryGrid photos={photoCredits} />
 
             {/* Copyright notice */}
             <GalleryCopyright />
