@@ -49,7 +49,7 @@ const About = () => {
       <main className="overflow-hidden">
         {/* Hero Section */}
         <Hero
-          backgroundImage="	https://snapsea.fra1.cdn.digitaloceanspaces.com/d8e971d9-661b-4f90-bc38-17817c258b35/th/IMG_1429.jpg"
+          backgroundImage="/about/hero-kezang-choden.jpg"
           title={
             <>
               About <span className="text-majestic-gold">Bhutan</span> & Us

@@ -93,7 +93,7 @@ const CallToAction = () => {
           className="relative rounded-r-xl overflow-hidden h-full shadow-lg group opacity-0 transition-all duration-700"
         >
           <img
-            src="../../destination-experience-by-kezang-choden.jpg"
+            src="/destination/destination-experience-by-kezang-choden.jpg"
             alt="Bhutan Landscape"
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
           />

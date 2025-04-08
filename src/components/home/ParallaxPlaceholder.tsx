@@ -6,7 +6,7 @@ const ParallaxPlaceholder = () => {
       className="section-padding relative overflow-hidden h-screen flex items-center justify-center"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../../Trashi Yangtse 090723 by Amp Sripimanwat-179-parallax (1).jpg')",
+          "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/home/trashiyangtse-amp-sripimanwat.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",

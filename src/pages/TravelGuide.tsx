@@ -50,7 +50,7 @@ const TravelGuide = () => {
       <main className="overflow-hidden">
         {/* Hero Section */}
         <Hero
-          backgroundImage="/travel-guide--ben-richards.jpg"
+          backgroundImage="/travel-guide/travel-guide--ben-richards.jpg"
           title={
             <>
               Bhutan <span className="text-majestic-gold">Travel Guide</span>

@@ -74,7 +74,7 @@ const Hero = () => {
         ref={heroRef}
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: "url(/hero-img.jpg)",
+          backgroundImage: "url(/home/hero-img.jpg)",
           willChange: "transform",
         }}
       ></div>

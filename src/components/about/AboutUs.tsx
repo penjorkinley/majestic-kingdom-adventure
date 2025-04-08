@@ -149,7 +149,7 @@ const AboutUs = () => {
                 {/* Main image */}
                 <div className="rounded-2xl w-1/2 h-2/3 shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-500">
                   <img
-                    src="../../buddha-point by Amp Sripimanwat.jpg"
+                    src="/about/our-story-scarlette-dg.jpg"
                     alt="Bhutan Tour Guide"
                     className="w-full h-full object-cover brightness-90"
                   />
