@@ -126,7 +126,7 @@ export const categoryDestinations: CategoryDestination[] = [
       {
         id: 105,
         name: "Chimi Lhakhang",
-        location: "Punakha, Bhutan",
+        location: "Lobesa, Bhutan",
         description:
           "The fertility temple associated with the Divine Madman, known for its unique blessings",
         fullDescription:
@@ -139,7 +139,7 @@ export const categoryDestinations: CategoryDestination[] = [
           "Connection to the legendary Divine Madman, Drukpa Kunley",
           "Beautiful 30-minute walk through rice fields to reach the temple",
           "Phallus symbols painted on surrounding houses as protection from evil",
-          "Panoramic views of the Punakha valley",
+          "Panoramic views of the Lobesa valley",
         ],
         bestTimeToVisit:
           "Spring (March-May) when the surrounding rice fields are lush green or autumn (September-November) for clear skies and comfortable temperatures.",
@@ -680,12 +680,12 @@ export const categoryDestinations: CategoryDestination[] = [
       },
       {
         id: 407,
-        name: "Punakha Valley",
+        name: "Lobesa Valley",
         location: "Punakha, Bhutan",
         description:
           "A valley steeped in history, known for its lush landscapes and the majestic Punakha Dzong.",
         fullDescription:
-          "Punakha Valley, where the Mo Chhu and Pho Chhu rivers converge, is renowned for its verdant terraced fields, historic Punakha Dzong, and rich cultural heritage. The valley offers breathtaking views, a mild climate, and a glimpse into Bhutan’s storied past. Its scenic beauty and historical landmarks make Punakha Valley one of the most captivating regions in Bhutan.",
+          "Lobesa Valley, where the Mo Chhu and Pho Chhu rivers converge, is renowned for its verdant terraced fields, historic Punakha Dzong, and rich cultural heritage. The valley offers breathtaking views, a mild climate, and a glimpse into Bhutan’s storied past. Its scenic beauty and historical landmarks make Punakha Valley one of the most captivating regions in Bhutan.",
         image: "/valleys/punakha-scarlette dg.jpg",
         photographer: "Scarlette DG",
         source: "Department of Tourism, Bhutan",
