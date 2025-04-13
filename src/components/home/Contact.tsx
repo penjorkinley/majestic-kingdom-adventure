@@ -373,48 +373,6 @@ const Contact = () => {
                   </div>
                   <div className="group">
                     <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium text-muted-foreground mb-1 transition-all group-focus-within:text-majestic-gold"
-                    >
-                      Phone Number*
-                    </label>
-
-                    <div className="flex items-center border rounded-lg overflow-hidden max-w-full sm:max-w-md focus-within:ring-2 focus-within:ring-majestic-gold/50 focus-within:border-majestic-gold transition-all">
-                      {/* Country Selector with Flag + Dial Code */}
-                      <select
-                        name="country"
-                        value={formData.country}
-                        onChange={handleChange}
-                        className="bg-muted/30 text-sm sm:text-base px-2 py-3 border-r focus:outline-none"
-                        required
-                      >
-                        <option value="">🌍</option>
-                        {countries.map((country) => (
-                          <option key={country.code} value={country.name}>
-                            {country?.flag} {country?.dial_code}
-                          </option>
-                        ))}
-                      </select>
-
-                      {/* Phone Input */}
-                      <input
-                        type="tel"
-                        name="phone"
-                        id="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="Enter your number"
-                        className="flex-1 px-4 py-3 bg-transparent focus:outline-none"
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Country and Days of Visit */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="group">
-                    <label
                       htmlFor="country"
                       className="block text-sm font-medium text-muted-foreground mb-1 transition-all group-focus-within:text-majestic-gold"
                     >
@@ -443,7 +401,48 @@ const Contact = () => {
                       )}
                     </select>
                   </div>
+                </div>
 
+                {/* Country and Days of Visit */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="group">
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium text-muted-foreground mb-1 transition-all group-focus-within:text-majestic-gold"
+                    >
+                      Phone Number*
+                    </label>
+
+                    <div className="flex items-center border rounded-lg overflow-hidden max-w-full sm:max-w-md focus-within:ring-2 focus-within:ring-majestic-gold/50 focus-within:border-majestic-gold transition-all">
+                      {/* Country Selector with Flag + Dial Code */}
+                      <select
+                        name="country"
+                        value={formData.country}
+                        onChange={handleChange}
+                        className="bg-muted/30 text-sm sm:text-base px-2 py-3 border-r focus:outline-none "
+                        required
+                      >
+                        <option value="">🌍</option>
+                        {countries.map((country) => (
+                          <option key={country.code} value={country.name}>
+                            {country?.flag} {country?.dial_code}
+                          </option>
+                        ))}
+                      </select>
+
+                      {/* Phone Input */}
+                      <input
+                        type="tel"
+                        name="phone"
+                        id="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="Enter your number"
+                        className="flex-1 px-4 py-3 bg-transparent focus:outline-none"
+                        required
+                      />
+                    </div>
+                  </div>
                   <div className="group">
                     <label
                       htmlFor="daysOfVisit"
