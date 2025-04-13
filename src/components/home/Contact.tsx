@@ -111,9 +111,9 @@ const Contact = () => {
       name: `${formData.firstName} ${formData.middleName} ${formData.lastName}`.trim(),
     };
 
-    const serviceID = "service_30z1zmm";
-    const templateID = "template_kk1owgq";
-    const userID = "3TPLPpS-bFLrTghaO"; // public key from EmailJS
+    const serviceID = "service_u2lgh5p";
+    const templateID = "template_5c3xopd";
+    const userID = "9b4zMUNAwosrIZdnM"; // public key from EmailJS
 
     emailjs
       .send(serviceID, templateID, emailJSFormData, userID)
