@@ -36,6 +36,8 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoadingCountries, setIsLoadingCountries] = useState(true);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const lastSubmitTime = useRef<number>(0);
 
   const contactRef = useRef<HTMLDivElement>(null);
   const formContainerRef = useRef<HTMLDivElement>(null);
@@ -103,17 +105,40 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    setSubmitError(null);
 
-    // Combine the name fields for EmailJS
+    // Rate limit: prevent resubmission within 30 seconds
+    const now = Date.now();
+    if (now - lastSubmitTime.current < 30_000) {
+      setSubmitError("Please wait before submitting again.");
+      return;
+    }
+
+    // Input length validation
+    if (formData.firstName.length > 100 || formData.lastName.length > 100) {
+      setSubmitError("Name fields must be under 100 characters.");
+      return;
+    }
+    if (formData.message.length > 2000) {
+      setSubmitError("Message must be under 2000 characters.");
+      return;
+    }
+    if (formData.phone.length > 20) {
+      setSubmitError("Phone number must be under 20 characters.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    lastSubmitTime.current = now;
+
     const emailJSFormData = {
       ...formData,
       name: `${formData.firstName} ${formData.middleName} ${formData.lastName}`.trim(),
     };
 
-    const serviceID = "service_u2lgh5p";
-    const templateID = "template_5c3xopd";
-    const userID = "9b4zMUNAwosrIZdnM"; // public key from EmailJS
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const userID = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     emailjs
       .send(serviceID, templateID, emailJSFormData, userID)
@@ -137,6 +162,7 @@ const Contact = () => {
       })
       .catch((err) => {
         setIsSubmitting(false);
+        setSubmitError("Failed to send your message. Please try again.");
         console.error("Email failed to send:", err);
       });
   };
@@ -495,6 +521,12 @@ const Contact = () => {
                     required
                   ></textarea>
                 </div>
+
+                {submitError && (
+                  <p className="text-red-600 dark:text-red-400 text-sm">
+                    {submitError}
+                  </p>
+                )}
 
                 <button
                   type="submit"
